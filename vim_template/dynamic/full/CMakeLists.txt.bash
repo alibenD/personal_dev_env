@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2019-08-15 09:46:30
+# @last_modified_date: 2019-08-15 14:50:52
 # @description: TODO
 #---***********************************************---
 
@@ -41,14 +41,21 @@ project(${PROJECT_NAME})
   ENDIF()
   IF(CMAKE_BUILD_TYPE STREQUAL "RELEASE")
     ADD_DEFINITIONS(-DNDEBUG)
+  ELSEIF(CMAKE_BUILD_TYPE STREQUAL "DEBUG")
+    SET(CMAKE_DEBUG_POSTFIX _debug)
   ENDIF()
 
-  OPTION(BUILD_GTESTS "Build google test cases" ON)
+  MESSAGE( STATUS "Build Type: " ${CMAKE_BUILD_TYPE})
+  MESSAGE( STATUS "DEBUG POSTFIX: " ${CMAKE_DEBUG_POSTFIX})
+  OPTION(BUILD_GTESTS "Build test example cases with google test" OFF)
+  OPTION(WITH_GLOG "Enable google log in this case" OFF)
 
   SET(CMAKE_VERBOSE_MAKEFILE OFF)
   SET(CMAKE_CXX_STANDARD 11)
-  SET(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Wno-unused-private-field -Wno-unused-parameter -Wno-unused-variable -Qunused-arguments -fcolor-diagnostics -ftemplate-backtrace-limit=0")
+  SET(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -fPIC -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Wno-unused-private-field -Wno-unused-parameter -Wno-unused-variable -Qunused-arguments -fcolor-diagnostics -ftemplate-backtrace-limit=0")
   #SET(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} -Wall -Werror -std=c++14 -Wextra -Wno-deprecated-register -Wno-deprecated-declarations -Qunused-arguments -fcolor-diagnostics -ftemplate-backtrace-limit=0")
+  #SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
   # Cross-platform check
   IF("\${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     SET(CMAKE_CXX_FLAGS_DEBUG "\${CMAKE_CXX_FLAGS} -O0 -g")
@@ -93,8 +100,11 @@ project(${PROJECT_NAME})
     \${CMAKE_THREAD_LIBS_INIT})
     ADD_SUBDIRECTORY(test)
   ENDIF()
-  find_package(OpenCV)
-  find_package(Eigen3)
+  IF(WITH_GLOG)
+    ADD_DEFINITIONS(-DENABLE_GLOG)
+  ENDIF()
+  #find_package(OpenCV)
+  #find_package(Eigen3)
 
 # Set&Add INCLUDE PATH
   # Example: SET ( VPATH_NAME PATH )
@@ -110,15 +120,22 @@ project(${PROJECT_NAME})
   LINK_DIRECTORIES(\${CMAKE_INSTALL_PREFIX}/lib)
   LINK_DIRECTORIES(\${PROJECT_SOURCE_DIR}/lib)
 
+  SET(APPLE_LIBS ${COCOA_LIBRARY} ${IOKit_LIBRARY} ${OpenGL_LIBRARY} ${CoreVideo_LIBRARY})
+  SET(APPLE_LIBS ${APPLE_LIBS} ${GLFW3_LIBRARY} ${ASSIMP_LIBRARY})
+  SET(LIBS ${LIBS} ${APPLE_LIBS})
+
   SET( THIRD_PARTY_LIBS
     \${THIRD_PARTY_LIBS}
-    \${OpenCV_LIBS}
+    #\${OpenCV_LIBS}
   )
 
 
 # Set Subdir(src)
   ADD_SUBDIRECTORY(src)
   ADD_SUBDIRECTORY(examples)
+  IF(BUILD_GTESTS)
+    ADD_SUBDIRECTORY(test)
+  ENDIF()
 
 # EXECUTABLE
   # Example: ADD_EXECUTABLE( EXEC_NAME SRC_FILE_NAME_LIST )
