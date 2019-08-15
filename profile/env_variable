@@ -49,7 +49,9 @@
     export CMAKE_LIBRARY_PATH=$LIBS_PATH:$CMAKE_LIBRARY_PATH
 
     #export PATH="$HOME/project/Shell:$PATH"
-    export PATH=${PATH}:$(find $HOME/project/Shell -follow -type d | sed '/\/\\./d' | tr '\n' ':' | sed 's/:$//')
+    #export PATH=${PATH}:$(find $HOME/project/Shell -follow -type d | sed '/\/\\./d' | tr '\n' ':' | sed 's/:$//')
+    export PATH=${PATH}:$(find $SETTING_PATH/Shell -follow -type d | sed '/\/\\./d' | tr '\n' ':' | sed 's/:$//')
+    export PATH=$PATH:$SETTING_PATH/vim_template
 
     export PATH=$DEV_ENV/homebrew/sbin:$PATH
     export PATH=$DEV_ENV/homebrew/bin:$PATH
