@@ -1,0 +1,23 @@
+HARD=`readlink $HOME/.bash_profile`
+SETTING_PATH=${HARD%/*}
+
+source $SETTING_PATH/profile/env_variable
+source $SETTING_PATH/profile/color_profile
+source $SETTING_PATH/profile/alias
+source $SETTING_PATH/profile/load_module
+source $SETTING_PATH/profile/developer_info
+
+if [[ "`uname`" -eq "Darwin" ]]; then
+  if brew list | grep coreutils > /dev/null ; then
+    PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+    alias ll='ls -F -l --show-control-chars --color=auto'
+    alias ls='ls -F --show-control-chars --color=auto'
+    eval `gdircolors -b $HOME/.dir_colors`
+  fi
+fi
+
+if [[ "$SHELL" == "/bin/bash" ]]; then
+  source $SETTING_PATH/profile/bash_profile
+elif [[ "$SHELL" == "/bin/zsh" ]]; then
+  source $SETTING_PATH/profile/zsh_profile
+fi
