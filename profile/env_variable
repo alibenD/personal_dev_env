@@ -29,11 +29,11 @@
     export C_INCLUDE_PATH=$DEV_ENV/include:$C_INCLUDE_PATH
     export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH:$CPLUS_INCLUDE_PATH
   
-    #export LDFLAGS="-L$DEV_ENV/env/homebrew/opt/openblas/lib:$LDFLAGS"
-    #export CPPFLAGS="-I$DEV_ENV/env/homebrew/opt/openblas/include:$CPPFLAGS"
+    #export LDFLAGS="-L$DEV_ENV/homebrew/opt/openblas/lib:$LDFLAGS"
+    #export CPPFLAGS="-I$DEV_ENV/homebrew/opt/openblas/include:$CPPFLAGS"
 
-    export LDFLAGS="-L$DEV_ENV/env/homebrew/opt/qt/lib"
-    export CPPFLAGS="-I$DEV_ENV/env/homebrew/opt/qt/include"
+    #export LDFLAGS="-L$DEV_ENV/homebrew/opt/qt/lib"
+    #export CPPFLAGS="-I$DEV_ENV/homebrew/opt/qt/include"
 
   # For pkg-config search PATH
     export PKG_CONFIG_PATH=$DEV_ENV/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH
