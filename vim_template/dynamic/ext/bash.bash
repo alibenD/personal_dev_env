@@ -4,11 +4,10 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2019-08-15 09:00:17
+# @last_modified_date: 2019-08-15 10:30:38
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
-set -x
 #---Variables
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
@@ -35,4 +34,3 @@ CREATED_YEAR=\`date '+%Y'\`
 
 #---Shell Command
 EOF
-set +x
