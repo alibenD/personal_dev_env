@@ -1,0 +1,8 @@
+#!/bin/bash
+# Quickly connect Ubuntu for ROS 
+
+IP_DOCKER_ROS_INDIGO=127.0.0.1
+PORT_DOCKER_ROS_INDIGO=50001
+
+echo -e "Connect to Ubuntu for ROS with X-C/S Mode\nIP is $IP_DOCKER_ROS_INDIGO\nPlease wait a moment."
+ssh -Y aliben@$IP_DOCKER_ROS_INDIGO -p $PORT_DOCKER_ROS_INDIGO 

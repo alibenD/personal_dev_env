@@ -1,0 +1,3 @@
+#!/bin/sh
+[ ! -d "$1" ] && set -- . "$@"
+exec /usr/bin/find "$@"

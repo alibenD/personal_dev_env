@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#---Automatically Generated from template 'bash' wrote by @aliben---
+# @Copyright (C) %CREATED_YEAR All rights reserved.
+# @name: ctagsc.bash
+# @author: aliben.develop@gmail.com
+# @created_date: 2017-10-25 11:17:26
+# @last_modified_date: 2017-10-25 11:18:38
+# @description: Create ctags in the root directory of your program
+#---***********************************************---
+
+
+#---Variables
+CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
+CREATED_YEAR=`date '+%Y'`
+
+#LANGUAGE_POSTFIX=`echo $(ls ./src| head -1) | tr "a-z" "A-Z"`
+#LANGUAGE_POSTFIX=${LANGUAGE_POSTFIX#*.}
+#if [ $LANGUAGE_POSTFIX = "CPP" \
+#  -o $LANGUAGE_POSTFIX = "CC" \
+#  -o $LANGUAGE_POSTFIX = "CXX" ]; then
+#  LANGUAGE_POSTFIX=`echo "C++"`
+#fi
+#---Shell Command
+
+echo -e "\033[34m Created ctags in the `pwd`\033[0m"
+echo -e -n "\033[32m"
+(set -x 
+ctags -I __THROW --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --fields=+S  -R -f ~/.vim/systags /usr/include $HOME/dev/env/homebrew/include $HOME/dev/env/include)
+echo -e "\033[0m"

@@ -1,0 +1,36 @@
+#---Automatically Generated from template 'bash' wrote by @aliben---
+# @Copyright (C) 2017 All rights reserved.
+# @name: README
+# @author: kaiwen.hu@dorabot.com 
+# @created_date: 2017-11-20 17:38:51
+# @last_modified_date: 2017-11-20 18:13:28
+# @description: The collection of scripts is for remotely runing commands to operate agvs.
+#             NOTICE: The file is just a README file, please ignore its postfix '.bash', it is just for using some kinds vim plugin.
+#---***********************************************---
+
+#----Script List---
+# 1. connect_agv_with_command.bash
+# 2. connect_agv.bash
+# 3. redis_demo.bash
+
+
+# In the following, it is a simple tutorial to show how to use scripts in the collection.
+#
+# 1. Command prototype: "connect_agv_with_command.bash "COMMAND_NAME""
+#    e.g. user@localhost:~$ connect_agv_with_command.bash "htop"
+#   
+#   After you pressed "Enter", several windows, where each agv will be connected respectively, will open and run "htop". 
+#   If the command is block-type, the window will hold till you stop or being closed accidently. Otherwise, the window will be closed when the command ran out.
+
+
+# 2. Command prototype: "connect_agv.bash"
+#    e.g. user@localhost:~$ connect_agv.bash
+#    
+#    After you pressed "Enter", serveral windows will be opened and make connection with agvs via ssh without any command, just connection.
+
+
+# 3. Command prototype: "redis_demo.bash"
+#    e.g. user@localhost:~$ redis_demo.bash
+#    
+#    The script will execute 3 command, 'roslaunch collvoid_dorabot launch_redisserver.launch', 'rosrun collvoid_dorabot redisserver_forcontrol.py'
+#    and 'rviz'
