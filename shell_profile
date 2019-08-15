@@ -1,5 +1,5 @@
 HARD=`readlink $HOME/.bash_profile`
-SETTING_PATH=${HARD%/*}
+export SETTING_PATH=${HARD%/*}
 
 source $SETTING_PATH/profile/env_variable
 source $SETTING_PATH/profile/color_profile
