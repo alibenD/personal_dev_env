@@ -1,0 +1,14 @@
+# Alias for shell command
+  alias grep='grep --color'
+  alias egrep='egrep --color'
+  alias fgrep='fgrep --color'
+  alias ls='ls -G'
+
+# Add an alias for gnu gcc
+  #alias arm-none-eabi-gcc='arm-none-eabi-gcc -fdiagnostics-color=always'
+  alias gnugcc=$DEV_ENV/env/homebrew/opt/gcc/bin/gcc-8
+  alias gnug++=$DEV_ENV/env/homebrew/opt/gcc/bin/g++-8
+
+  alias lg=logout
+  alias vi='vi -X'
+  #alias git='/usr/bin/git'

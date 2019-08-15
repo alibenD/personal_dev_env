@@ -1,0 +1,13 @@
+##==============Load_Module_Settings======================
+
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+  [ -f $DEV_ENV/env/homebrew/etc/bash_completion ] && . $DEV_ENV/env/homebrew/etc/bash_completion
+  source $HOME/.bashrc
+
+#if [ -f ~/.git-completion.bash  ]; then
+#    . ~/.git-completion.bash
+#fi
+
+#if [ -f $(brew --prefix)/etc/bash_completion  ]; then
+#  . $(brew --prefix)/etc/bash_completion
+#fi

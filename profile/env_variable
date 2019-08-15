@@ -1,0 +1,77 @@
+##============COMMON_ENVIRONMENT_VARIABLES==================
+  # Added by Aliben for etc
+    export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S  `whoami`  "
+    export HISTFILESIZE=10000
+    export HISTSIZE=10000
+
+    export DEV_ENV=$HOME/dev/env
+    MANPATH="$DEV_ENV/homebrew/opt/findutils/libexec/gnuman:$MANPATH"
+
+    export OPENNI2_INCLUDE=$DEV_ENV/homebrew/include/ni2
+    export OPENNI2_REDIST=$DEV_ENV/homebrew/lib/ni2
+    export VIMRUNTIME=$DEV_ENV/homebrew/share/vim/vim81
+
+  # Adding Develop Environment with Lib
+    #export LIBRARY_PATH=$DEV_ENV/lib:$LIBRARY_PATH
+    #export LD_LIBRARY_PATH=$DEV_ENV/lib:$LD_LIBRARY_PATH
+    #export LIBRARY_PATH=$DEV_ENV/homebrew/lib:$LIBRARY_PATH
+    #export LD_LIBRARY_PATH=$DEV_ENV/homebrew/lib:$LD_LIBRARY_PATH
+    #export LIBRARY_PATH=$DEV_ENV/lib:$LIBRARY_PATH
+    #export LD_LIBRARY_PATH=$DEV_ENV/lib:$LD_LIBRARY_PATH
+    #export LD_LIBRARY_PATH=$DEV_ENV/homebrew/opt/llvm/lib:$LD_LIBRARY_PATH
+  
+  # Adding Develop Environment with Lib: RPATH
+    #export DYLD_FALLBACK_LIBRARY_PATH=$DEV_ENV/homebrew/lib:$DYLD_FALLBACK_LIBRARY_PATH
+    #export DYLD_FALLBACK_LIBRARY_PATH=$DEV_ENV/lib:$DYLD_FALLBACK_LIBRARY_PATH
+
+  # Adding Develop Environment with C_INCLUDE
+    export C_INCLUDE_PATH=$DEV_ENV/homebrew/include:$C_INCLUDE_PATH
+    export C_INCLUDE_PATH=$DEV_ENV/include:$C_INCLUDE_PATH
+    export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH:$CPLUS_INCLUDE_PATH
+  
+    #export LDFLAGS="-L$DEV_ENV/env/homebrew/opt/openblas/lib:$LDFLAGS"
+    #export CPPFLAGS="-I$DEV_ENV/env/homebrew/opt/openblas/include:$CPPFLAGS"
+
+    export LDFLAGS="-L$DEV_ENV/env/homebrew/opt/qt/lib"
+    export CPPFLAGS="-I$DEV_ENV/env/homebrew/opt/qt/include"
+
+  # For pkg-config search PATH
+    export PKG_CONFIG_PATH=$DEV_ENV/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH
+    export PKG_CONFIG_PATH=$DEV_ENV/lib/pkgconfig:$PKG_CONFIG_PATH
+    export PKG_CONFIG_PATH="$DEV_ENV/homebrew/opt/qt/lib/pkgconfig":$PKG_CONFIG_PATH
+  #For pkg-config to find openblas you may need to set:
+    #export PKG_CONFIG_PATH="$DEV_ENV/env/homebrew/opt/openblas/lib/pkgconfig:$PKG_CONFIG_PATH"
+    
+    # For CMake search PATH
+    export LIBS_PATH=$DEV_ENV/homebrew/lib:$LIBS_PATH
+    export LIBS_PATH=$DEV_ENV/lib:$LIBS_PATH
+    export CMAKE_INCLUDE_PATH=$C_INCLUDE_PATH:$CMAKE_INCLUDE_PATH
+    export CMAKE_LIBRARY_PATH=$LIBS_PATH:$CMAKE_LIBRARY_PATH
+
+    #export PATH="$HOME/project/Shell:$PATH"
+    export PATH=${PATH}:$(find $HOME/project/Shell -follow -type d | sed '/\/\\./d' | tr '\n' ':' | sed 's/:$//')
+
+    export PATH=$DEV_ENV/homebrew/sbin:$PATH
+    export PATH=$DEV_ENV/homebrew/bin:$PATH
+    export PATH=$DEV_ENV/bin:$PATH
+    export PATH=$DEV_ENV/sbin:$PATH
+    export PATH=$DEV_ENV/libexec:$PATH
+    export PATH=$DEV_ENV/homebrew/bin:$PATH
+
+  # Adding Develop Environment with Binary
+    #export PATH="$DEV_ENV/env/homebrew/opt/findutils/libexec/gnubin:$PATH"
+    #export PATH="$DEV_ENV/env/homebrew/opt/make/libexec/gnubin:$PATH"
+    export PATH="$DEV_ENV/homebrew/opt/qt/bin:$PATH"
+    export PATH="$PATH:$DEV_ENV/homebrew/lib/ruby/gems/2.6.0/bin"
+    export PATH="$PATH:$HOME/.rvm/bin"
+
+  # Adding STM32 tool chain
+    #export PATH="$HOME/project/stm32/gcc-arm-none-eabi/bin:$PATH"
+    export PATH="$DEV_ENV/gnu-mcu-eclipse/arm-none-eabi-gcc/7.2.1-1.1-20180401-0515/bin:$PATH"
+
+
+
+
+  # Proxy
+    #export HTTP_PROXY="http[socks5]://127.0.0.1:1081"
+    #export HTTPS_PROXY="http[socks5]://127.0.0.1:1081"

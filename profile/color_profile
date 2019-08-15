@@ -1,0 +1,8 @@
+#export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
+#export CLICOLOR=1
+#export LSCOLORS=gxfxaxdxcxegedabagacad
+
+# bash color them
+  #export TERM="xterm-color"
+  #PS1='\[\e[37m\][\#]\[\e[34;1m\]\u\[\e[0m\]\[\e[36;1m\]@\[\e[34m\]\h\[\e[37;1m\]: \[\e[36m\]\w\[\e[0m\]\$ '
+
