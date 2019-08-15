@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2019-08-15 09:48:16
+# @last_modified_date: 2019-08-15 14:54:42
 # @description: TODO
 #---***********************************************---
 
@@ -30,8 +30,9 @@ cat << EOF
 FILE(GLOB_RECURSE HEADERS
   ../include/$PROJECT_NAME/*/*.h*
   ../include/$PROJECT_NAME/*.h*
+  ../include/*.h*
   )
-FILE(GLOB_RECURSE SOURCES *.cc)
+FILE(GLOB_RECURSE SOURCES *.cc *.cpp *.c *.cxx)
 
 ADD_LIBRARY($PROJECT_NAME SHARED \${HEADERS} \${SOURCES})
 TARGET_LINK_LIBRARIES($PROJECT_NAME \${THIRD_PARTY_LIBS})
