@@ -1,2 +1,2 @@
 #!/bin/bash
-[ $# -eq 7  ] && /Users/aliben/project/Shell/extMerge "$2" "$5"  
+[ $# -eq 7  ] && $SETTING_PATH/Shell/extMerge "$2" "$5"  
