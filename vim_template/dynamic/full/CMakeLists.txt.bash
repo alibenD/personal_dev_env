@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2019-08-15 14:50:52
+# @last_modified_date: 2019-08-16 16:30:28
 # @description: TODO
 #---***********************************************---
 
@@ -98,7 +98,6 @@ project(${PROJECT_NAME})
     SET(TEST_LIBS
     \${GTEST_BOTH_LIBRARIES}
     \${CMAKE_THREAD_LIBS_INIT})
-    ADD_SUBDIRECTORY(test)
   ENDIF()
   IF(WITH_GLOG)
     ADD_DEFINITIONS(-DENABLE_GLOG)
