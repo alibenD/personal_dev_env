@@ -5,7 +5,7 @@
 # @file: newproject.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-08-31 20:11:33
-# @last_modified_date: 2019-01-14 15:49:53
+# @last_modified_date: 2019-08-16 18:45:35
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -20,7 +20,7 @@ PROJECT_NAME=$1
 set -x
 mkdir -p $PROJECT_NAME/include/$PROJECT_NAME
 mkdir -p $PROJECT_NAME/src
-mkdir -p $PROJECT_NAME/test
+mkdir -p $PROJECT_NAME/testing
 mkdir -p $PROJECT_NAME/examples
 mkdir -p $PROJECT_NAME/log
 mkdir -p $PROJECT_NAME/doc
@@ -30,13 +30,19 @@ mkdir -p $PROJECT_NAME/bin
 mkdir -p $PROJECT_NAME/lib
 mkdir -p $PROJECT_NAME/cmake_modules
 
-hello_world.cc.bash $PROJECT_NAME> $PROJECT_NAME/examples/hello_world.cc
+#hello_world.cc.bash $PROJECT_NAME> $PROJECT_NAME/examples/hello_world.cc
 CMakeLists.txt.bash $PROJECT_NAME> $PROJECT_NAME/CMakeLists.txt
 CMakeLists_libdir.txt.bash $PROJECT_NAME> $PROJECT_NAME/src/CMakeLists.txt
-print_hello.cc.bash $PROJECT_NAME> $PROJECT_NAME/src/print_hello.cc
-print_hello.hh.bash $PROJECT_NAME> $PROJECT_NAME/include/$PROJECT_NAME/print_hello.hh
+#print_hello.cc.bash $PROJECT_NAME> $PROJECT_NAME/src/print_hello.cc
+#print_hello.hh.bash $PROJECT_NAME> $PROJECT_NAME/include/$PROJECT_NAME/print_hello.hh
+Test_Demo.hh.bash $PROJECT_NAME > $PROJECT_NAME/include/$PROJECT_NAME/Test_Demo.hh
+Test_Demo.cc.bash $PROJECT_NAME > $PROJECT_NAME/src/Test_Demo.cc
+
+TestingForDemoTEST.cc.bash $PROJECT_NAME > $PROJECT_NAME/testing/TestingForDemoTEST.cc
+TestingForDemoTEST_F.cc.bash $PROJECT_NAME > $PROJECT_NAME/testing/TestingForDemoTEST_F.cc
+
 CMakeLists_bindir.txt.bash $PROJECT_NAME> $PROJECT_NAME/examples/CMakeLists.txt
-CMakeLists_testdir.txt.bash $PROJECT_NAME> $PROJECT_NAME/test/CMakeLists.txt
+CMakeLists_testdir.txt.bash $PROJECT_NAME> $PROJECT_NAME/testing/CMakeLists.txt
 build.bash.bash build.sh > $PROJECT_NAME/build.sh && chmod u+x $PROJECT_NAME/build.sh
 run_test.bash run_test.sh> $PROJECT_NAME/run_test.sh && chmod u+x $PROJECT_NAME/run_test.sh
 .gitignore.bash .gitignore> $PROJECT_NAME/.gitignore
