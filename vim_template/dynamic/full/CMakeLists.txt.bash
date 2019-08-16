@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2019-08-16 16:30:28
+# @last_modified_date: 2019-08-16 18:48:41
 # @description: TODO
 #---***********************************************---
 
@@ -133,7 +133,7 @@ project(${PROJECT_NAME})
   ADD_SUBDIRECTORY(src)
   ADD_SUBDIRECTORY(examples)
   IF(BUILD_GTESTS)
-    ADD_SUBDIRECTORY(test)
+    ADD_SUBDIRECTORY(testing)
   ENDIF()
 
 # EXECUTABLE

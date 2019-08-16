@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2019-08-15 09:46:09
+# @last_modified_date: 2019-08-16 18:47:11
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -35,6 +35,7 @@ CREATED_YEAR=\`date '+%Y'\`
 
 #---Shell Command
 set -x
+mkdir -p build
 cd build
 cmake ..
 make -j7
