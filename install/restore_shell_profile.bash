@@ -5,7 +5,7 @@
 # @file: restore_shell_profile.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:04:44
-# @last_modified_date: 2019-08-15 14:13:46
+# @last_modified_date: 2019-08-19 17:08:10
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -16,6 +16,7 @@ CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
+SETTING_PATH=../
 set -x
 if [[ -f "$HOME/.bash_profile" ]] || [[ -L "$HOME/.bash_profile" ]]; then
   mv $HOME/.bash_profile $HOME/.bash_profile_old
