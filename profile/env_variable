@@ -9,7 +9,8 @@
 
     export OPENNI2_INCLUDE=$DEV_ENV/homebrew/include/ni2
     export OPENNI2_REDIST=$DEV_ENV/homebrew/lib/ni2
-    export VIMRUNTIME=$DEV_ENV/homebrew/share/vim/vim81
+    #export VIMRUNTIME=$DEV_ENV/homebrew/share/vim/vim81
+    #export VIMRUNTIME=${`which vim`%/*}
 
   # Adding Develop Environment with Lib
     #export LIBRARY_PATH=$DEV_ENV/lib:$LIBRARY_PATH
