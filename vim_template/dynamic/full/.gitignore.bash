@@ -5,7 +5,7 @@
 # @name: gitignore.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-11-01 18:18:27
-# @last_modified_date: 2019-06-10 10:10:07
+# @last_modified_date: 2019-08-20 09:51:41
 # @description: TODO
 #---***********************************************---
 
@@ -33,6 +33,7 @@ bin
 lib
 doc
 log
+coverage_report
 *.swo
 *.swp
 *.o
