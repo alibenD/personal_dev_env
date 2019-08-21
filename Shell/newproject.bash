@@ -5,7 +5,7 @@
 # @file: newproject.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-08-31 20:11:33
-# @last_modified_date: 2019-08-16 18:45:35
+# @last_modified_date: 2019-08-21 17:13:41
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -29,10 +29,17 @@ mkdir -p $PROJECT_NAME/build
 mkdir -p $PROJECT_NAME/bin
 mkdir -p $PROJECT_NAME/lib
 mkdir -p $PROJECT_NAME/cmake_modules
+mkdir -p $PROJECT_NAME/cmake_config
 
 #hello_world.cc.bash $PROJECT_NAME> $PROJECT_NAME/examples/hello_world.cc
 CMakeLists.txt.bash $PROJECT_NAME> $PROJECT_NAME/CMakeLists.txt
 CMakeLists_libdir.txt.bash $PROJECT_NAME> $PROJECT_NAME/src/CMakeLists.txt
+
+option.cmake.bash option.cmake > $PROJECT_NAME/cmake_config/option.cmake
+compiler_option.cmake.bash compiler_option.cmake > $PROJECT_NAME/cmake_config/compiler_option.cmake
+other_options.cmake.bash other_option.cmake > $PROJECT_NAME/cmake_config/other_options.cmake
+find_package.cmake.bash find_package.cmake > $PROJECT_NAME/cmake_config/find_package.cmake
+
 #print_hello.cc.bash $PROJECT_NAME> $PROJECT_NAME/src/print_hello.cc
 #print_hello.hh.bash $PROJECT_NAME> $PROJECT_NAME/include/$PROJECT_NAME/print_hello.hh
 Test_Demo.hh.bash $PROJECT_NAME > $PROJECT_NAME/include/$PROJECT_NAME/Test_Demo.hh
