@@ -5,7 +5,7 @@
 # @file: compiler_option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 10:23:24
-# @last_modified_date: 2019-08-21 17:05:18
+# @last_modified_date: 2019-08-22 10:19:54
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -41,6 +41,17 @@ cat << EOF
   IF(ENABLE_VERBOSE)
     SET(CMAKE_VERBOSE_MAKEFILE ON)
   ENDIF()
+  #IF(ENABLE_PROFILER)
+  #  IF (WIN32)
+  #    MESSAGE(STATUS "Now is windows")
+  #  ELSEIF (APPLE)
+  #    MESSAGE(STATUS "Now is Apple systens.")
+  #  ELSEIF (UNIX)
+  #    MESSAGE(STATUS "Now is UNIX-like OS's.")
+  #    SET(CXX_FLAG_PROFILER "-pg")
+  #  ENDIF ()
+  #ENDIF()
+
 
   IF(CMAKE_BUILD_TYPE STREQUAL "RELEASE")
     ADD_DEFINITIONS(-DNDEBUG)

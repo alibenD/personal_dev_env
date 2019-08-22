@@ -5,7 +5,7 @@
 # @file: option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 09:42:57
-# @last_modified_date: 2019-08-21 10:27:56
+# @last_modified_date: 2019-08-21 18:40:22
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -34,6 +34,7 @@ cat << EOF
   OPTION(ENABLE_WARNING_AS_ERROR OFF)
   OPTION(ENABLE_WARNING_EXTRA ON)
   OPTION(ENABLE_VERBOSE ON)
+  OPTION(ENABLE_PROFILER OFF)
 
   OPTION(BUILD_GTESTS "Build test example cases with google test" ON)
   OPTION(WITH_GLOG "Enable google log in this case" OFF)
