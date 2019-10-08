@@ -7,6 +7,10 @@
     export DEV_ENV=$HOME/dev/env
     MANPATH="$DEV_ENV/homebrew/opt/findutils/libexec/gnuman:$MANPATH"
 
+    export GT_HOME=/Users/aliben/project/source_code/googletest
+    export GMOCK_HOME=$GT_HOME/googlemock
+    export GTEST_HOME=$GT_HOME/googletest
+
     export OPENNI2_INCLUDE=$DEV_ENV/homebrew/include/ni2
     export OPENNI2_REDIST=$DEV_ENV/homebrew/lib/ni2
     #export VIMRUNTIME=$DEV_ENV/homebrew/share/vim/vim81
