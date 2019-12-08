@@ -1,5 +1,6 @@
 HARD=`readlink $HOME/.bash_profile`
 export SETTING_PATH=${HARD%/*}
+export VIM=$SETTING_PATH/vim
 
 source $SETTING_PATH/profile/env_variable
 source $SETTING_PATH/profile/color_profile
