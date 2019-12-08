@@ -2,7 +2,7 @@
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
   [ -f $DEV_ENV/env/homebrew/etc/bash_completion ] && . $DEV_ENV/env/homebrew/etc/bash_completion
-  source $HOME/.bashrc
+#source $HOME/.bashrc
 
 #if [ -f ~/.git-completion.bash  ]; then
 #    . ~/.git-completion.bash
