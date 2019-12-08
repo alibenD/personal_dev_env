@@ -5,7 +5,7 @@
 # @file: compiler_option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 10:23:24
-# @last_modified_date: 2019-08-22 10:19:54
+# @last_modified_date: 2019-10-18 22:59:52
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -70,8 +70,8 @@ cat << EOF
       \${CXX_FLAG_WARNING_AS_ERROR} \\
       -std=c++14 \\
       -fPIC \\
-      -Wno-deprecated-register \\
-      -Wno-deprecated-declarations \\
+      -Wdeprecated-register \\
+      -Wdeprecated-declarations \\
       -Wno-unused-private-field \\
       -Wno-unused-parameter \\
       -Wno-unused-variable \\
