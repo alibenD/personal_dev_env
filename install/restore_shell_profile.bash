@@ -5,7 +5,7 @@
 # @file: restore_shell_profile.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:04:44
-# @last_modified_date: 2019-08-23 09:26:49
+# @last_modified_date: 2019-12-08 22:18:32
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -26,6 +26,12 @@ fi
 if [[ -f "$HOME/.zshrc" ]] || [[ -L "$HOME/.zshrc" ]]; then
   mv $HOME/.zshrc $HOME/.zshrc_old
 fi
+
+if [[ -d "$HOME/.oh-my-zsh" ]] || [[ -L "$HOME/.oh-my-zsh" ]]; then
+  mv $HOME/.oh-my-zsh $HOME/.oh-my-zsh_old
+fi
+
+ln -s $SETTING_PATH/oh-my-zsh $HOME/.oh-my-zsh
 
 ln -s $SETTING_PATH/shell_profile $HOME/.bash_profile
 ln -s $SETTING_PATH/shell_profile $HOME/.zshrc
