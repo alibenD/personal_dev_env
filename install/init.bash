@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2019-08-15 14:12:27
+# @last_modified_date: 2019-12-08 20:56:12
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -17,4 +17,5 @@ CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
 ../vim/auto_install.sh
+../fonts/install.sh
 source restore_shell_profile.bash
