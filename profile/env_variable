@@ -69,6 +69,8 @@
     #export PATH="$DEV_ENV/env/homebrew/opt/findutils/libexec/gnubin:$PATH"
     #export PATH="$DEV_ENV/env/homebrew/opt/make/libexec/gnubin:$PATH"
     export PATH="$DEV_ENV/homebrew/opt/qt/bin:$PATH"
+    export PATH="$DEV_ENV/homebrew/opt/qemu/bin:$PATH"
+#export PATH="$DEV_ENV/homebrew/opt/binutils/bin:$PATH"
     export PATH="$PATH:$DEV_ENV/homebrew/lib/ruby/gems/2.6.0/bin"
     export PATH="$PATH:$HOME/.rvm/bin"
 
