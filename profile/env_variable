@@ -79,6 +79,7 @@
     export PATH="$DEV_ENV/gnu-mcu-eclipse/arm-none-eabi-gcc/7.2.1-1.1-20180401-0515/bin:$PATH"
 
 
+#export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 
 
   # Proxy
