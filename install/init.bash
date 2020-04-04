@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 15:03:25
+# @last_modified_date: 2020-04-04 16:02:30
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -26,6 +26,7 @@ if [[ "$(uname)" = "Linux" ]]; then
   echo "Install dependency"
   /bin/bash install_linux_dependency.sh
   /bin/bash install_zsh_plugin.sh
+  /bin/bash install_vim.sh
 else
   if command -v brew >/dev/null 2>&1; then 
     echo "Exists brew, `which brew`"
@@ -37,5 +38,5 @@ fi
 
 source restore_shell_profile.bash
 source ~/.bash_profile
-../vim/auto_install.sh
-../fonts/install.sh
+cd ../vim/ && ./auto_install.sh
+cd fonts && ./install.sh
