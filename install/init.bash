@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 14:39:40
+# @last_modified_date: 2020-04-04 14:59:22
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -25,7 +25,7 @@ if [[ "$(uname)" = "Linux" ]]; then
   echo "Linux system, default using apt to manage package"
   echo "Install dependency"
   /bin/bash install_linux_dependency.sh
-  /bin/bash install_zsh_plugin
+  /bin/bash install_zsh_plugin.sh
 else
   if command -v brew >/dev/null 2>&1; then 
     echo "Exists brew, `which brew`"
