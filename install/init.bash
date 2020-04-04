@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-05 00:01:58
+# @last_modified_date: 2020-04-05 00:07:18
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -27,7 +27,7 @@ if [[ "$(uname)" = "Linux" ]]; then
   echo "Linux system, default using apt to manage package"
   echo "Install dependency"
   /bin/bash install_linux_dependency.sh
-  if [[ "`vi --version | grep python3`" != "" ]]; then
+  if [[ "`vi --version | grep python3`" = "" ]]; then
     /bin/bash install_vim.sh
   fi
 else
