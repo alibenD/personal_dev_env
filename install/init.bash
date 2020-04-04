@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 20:45:41
+# @last_modified_date: 2020-04-04 20:58:08
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -28,7 +28,9 @@ if [[ "$(uname)" = "Linux" ]]; then
   echo "Install dependency"
   /bin/bash install_linux_dependency.sh
   /bin/bash install_zsh_plugin.sh
-  /bin/bash install_vim.sh
+  if [[ "`vi --version | grep python3`" != "" ]]; then
+    /bin/bash install_vim.sh
+  fi
 else
   if command -v brew >/dev/null 2>&1; then 
     echo "Exists brew, `which brew`"
