@@ -143,3 +143,5 @@ if [[ "$SHELL" == "/bin/bash" ]]; then
 elif [[ "$SHELL" == "/bin/zsh" ]]; then
   source $SETTING_PATH/profile/zsh_profile
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
