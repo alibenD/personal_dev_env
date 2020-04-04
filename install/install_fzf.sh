@@ -4,7 +4,7 @@
 # @file: install_fzf.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 22:10:40
-# @last_modified_date: 2020-04-04 22:13:11
+# @last_modified_date: 2020-04-04 23:34:42
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -16,9 +16,21 @@ CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
 if [[ "$(uname)" = "Linux" ]]; then
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install
+  if [[ ! -d ~/.fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+  else
+    if command -v fzf >/dev/null 2>&1; then 
+      echo "Exists fzf, `which brew`"
+    else
+      ~/.fzf/install
+    fi
+  fi
 else
   brew install fzf
-  $(brew --prefix)/opt/fzf/install
+  if command -v fzf >/dev/null 2>&1; then 
+    echo "Exists fzf, `which brew`"
+  else
+    $(brew --prefix)/opt/fzf/install
+  fi
 fi
