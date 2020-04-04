@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 19:21:28
+# @last_modified_date: 2020-04-04 20:45:41
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -15,6 +15,8 @@
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
 
+git submodule foreach --recursive git submodule init
+git submodule foreach --recursive git submodule update
 #---Shell Command
 if [[ $ALIBEN_DEV_ENV ]]; then
   echo "Already installed personal_dev_env"
