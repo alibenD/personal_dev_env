@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 23:10:44
+# @last_modified_date: 2020-04-05 00:01:58
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -51,5 +51,5 @@ cd ../fonts && ./install.sh
 
 if [[ `echo $SHELL` != "/bin/zsh" ]]; then
   echo "Changing Login Shell from $SHELL to /bin/zsh"
-  chsh -s /usr/zsh
+  chsh -s /bin/zsh
 fi
