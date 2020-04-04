@@ -4,7 +4,7 @@
 # @file: brew_package_install.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 16:06:39
-# @last_modified_date: 2020-04-04 20:58:33
+# @last_modified_date: 2020-04-04 21:29:06
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -16,4 +16,7 @@ CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
 #brew install vim --with-python --with-ruby --with-perl --with-features=huge --with-lua
-brew install cmake  vim
+brew install cmake \
+  wget \
+  vim \
+  axel
