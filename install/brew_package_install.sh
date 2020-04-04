@@ -4,7 +4,7 @@
 # @file: brew_package_install.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 16:06:39
-# @last_modified_date: 2020-04-04 21:29:06
+# @last_modified_date: 2020-04-04 23:38:42
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -19,4 +19,5 @@ CREATED_YEAR=`date '+%Y'`
 brew install cmake \
   wget \
   vim \
-  axel
+  axel \
+  fzf
