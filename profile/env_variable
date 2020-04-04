@@ -85,3 +85,5 @@
   # Proxy
     #export HTTP_PROXY="http[socks5]://127.0.0.1:1081"
     #export HTTPS_PROXY="http[socks5]://127.0.0.1:1081"
+#
+export ALIBEN_DEV_ENV="INSTALLED"
