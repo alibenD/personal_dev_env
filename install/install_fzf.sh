@@ -4,7 +4,7 @@
 # @file: install_fzf.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 22:10:40
-# @last_modified_date: 2020-04-04 23:34:42
+# @last_modified_date: 2020-04-05 00:10:41
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -15,6 +15,7 @@ CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
+set -x
 if [[ "$(uname)" = "Linux" ]]; then
   if [[ ! -d ~/.fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -34,3 +35,4 @@ else
     $(brew --prefix)/opt/fzf/install
   fi
 fi
+set +x

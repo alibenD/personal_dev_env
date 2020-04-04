@@ -4,7 +4,7 @@
 # @file: install_vim.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 15:46:49
-# @last_modified_date: 2020-04-04 21:41:29
+# @last_modified_date: 2020-04-05 00:11:03
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -15,6 +15,7 @@ CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
+set -x
 mkdir -p $HOME/tmp
 VIM_DOWNLOAD_PATH=$HOME/tmp
 if [ ! -f $VIM_DOWNLOAD_PATH/vim-master.zip ]; then
@@ -37,3 +38,4 @@ cd vim-master
             --prefix=$HOME/dev/env
 
 make install -j7
+set +x

@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-05 00:07:18
+# @last_modified_date: 2020-04-05 00:10:30
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -14,7 +14,7 @@
 #---Variables
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
-
+set -x
 git submodule foreach --recursive git submodule init
 git submodule foreach --recursive git submodule update
 #---Shell Command
@@ -53,3 +53,4 @@ if [[ `echo $SHELL` != "/bin/zsh" ]]; then
   echo "Changing Login Shell from $SHELL to /bin/zsh"
   chsh -s /bin/zsh
 fi
+set +x
