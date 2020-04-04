@@ -4,7 +4,7 @@
 # @file: install_vim.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 15:46:49
-# @last_modified_date: 2020-04-04 16:05:26
+# @last_modified_date: 2020-04-04 19:20:17
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -15,10 +15,12 @@ CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
+mkdir -p $HOME/tmp
+VIM_DOWNLOAD_PATH=$HOME/tmp/vim
 if [ ! -d /var/vim ]; then
-  git clone https://github.com/vim/vim.git /var/vim
+  git clone https://github.com/vim/vim.git $VIM_DOWNLOAD_PATH
 fi
-cd /var/vim
+cd $VIM_DOWNLOAD_PATH
 ./configure --with-features=huge \
             --enable-multibyte \
             --enable-rubyinterp=yes \
@@ -33,4 +35,4 @@ cd /var/vim
             --enable-cscope \
             --prefix=$HOME/dev/env
 
-sudo make install -j7
+make install -j7

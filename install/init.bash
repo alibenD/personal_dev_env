@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 16:06:31
+# @last_modified_date: 2020-04-04 19:21:28
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -33,6 +33,7 @@ else
   else 
     echo "No exists brew, installing brew at $HOME/dev/env"
     /bin/bash brew_install.sh
+    sudo chown -R `echo $USER` $HOME/dev
     /bin/bash brew_package_install.sh
   fi
 fi
@@ -40,4 +41,4 @@ fi
 source restore_shell_profile.bash
 source ~/.bash_profile
 cd ../vim/ && ./auto_install.sh
-cd fonts && ./install.sh
+cd ../fonts && ./install.sh
