@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 22:21:52
+# @last_modified_date: 2020-04-04 23:10:44
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -48,3 +48,8 @@ source restore_shell_profile.bash
 source ~/.bash_profile
 cd ../vim/ && ./auto_install.sh
 cd ../fonts && ./install.sh
+
+if [[ `echo $SHELL` != "/bin/zsh" ]]; then
+  echo "Changing Login Shell from $SHELL to /bin/zsh"
+  chsh -s /usr/zsh
+fi
