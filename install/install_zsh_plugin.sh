@@ -4,7 +4,7 @@
 # @file: install_zsh_plugin.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:58:15
-# @last_modified_date: 2020-04-04 14:58:25
+# @last_modified_date: 2020-04-04 21:07:47
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -16,3 +16,5 @@ CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
 echo "Install zsh_plugin"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
