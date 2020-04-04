@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 14:59:22
+# @last_modified_date: 2020-04-04 15:03:25
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -35,7 +35,7 @@ else
   fi
 fi
 
-#source restore_shell_profile.bash
-#source ~/.bash_profile
-#../vim/auto_install.sh
-#../fonts/install.sh
+source restore_shell_profile.bash
+source ~/.bash_profile
+../vim/auto_install.sh
+../fonts/install.sh
