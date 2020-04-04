@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 20:58:08
+# @last_modified_date: 2020-04-04 21:10:13
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -27,7 +27,6 @@ if [[ "$(uname)" = "Linux" ]]; then
   echo "Linux system, default using apt to manage package"
   echo "Install dependency"
   /bin/bash install_linux_dependency.sh
-  /bin/bash install_zsh_plugin.sh
   if [[ "`vi --version | grep python3`" != "" ]]; then
     /bin/bash install_vim.sh
   fi
@@ -43,6 +42,8 @@ else
 fi
 
 source restore_shell_profile.bash
+/bin/bash install_zsh_plugin.sh
+
 source ~/.bash_profile
 cd ../vim/ && ./auto_install.sh
 cd ../fonts && ./install.sh
