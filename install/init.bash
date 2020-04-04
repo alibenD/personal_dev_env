@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 16:02:30
+# @last_modified_date: 2020-04-04 16:06:31
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -33,6 +33,7 @@ else
   else 
     echo "No exists brew, installing brew at $HOME/dev/env"
     /bin/bash brew_install.sh
+    /bin/bash brew_package_install.sh
   fi
 fi
 
