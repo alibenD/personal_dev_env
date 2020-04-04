@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-04 21:10:13
+# @last_modified_date: 2020-04-04 22:21:52
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -41,6 +41,7 @@ else
   fi
 fi
 
+/bin/bash install_fzf.sh
 source restore_shell_profile.bash
 /bin/bash install_zsh_plugin.sh
 
