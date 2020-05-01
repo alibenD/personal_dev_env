@@ -5,7 +5,7 @@
 # @file: find_package.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:38:22
-# @last_modified_date: 2019-08-21 16:45:09
+# @last_modified_date: 2020-05-01 10:48:48
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -33,7 +33,7 @@ cat << EOF
   # Example: find_package(OpenCV REQUIRED)
   IF(BUILD_GTESTS)
     ENABLE_TESTING()
-    find_package(GTEST REQUIRED)
+    find_package(GTest REQUIRED)
     find_package(Threads REQUIRED)
     INCLUDE_DIRECTORIES(\${GTEST_INCLUDE_DIRS})
     SET(TEST_LIBS

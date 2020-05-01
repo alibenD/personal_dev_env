@@ -5,7 +5,7 @@
 # @file: option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 09:42:57
-# @last_modified_date: 2019-08-21 18:40:22
+# @last_modified_date: 2020-05-01 10:47:43
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -36,7 +36,7 @@ cat << EOF
   OPTION(ENABLE_VERBOSE ON)
   OPTION(ENABLE_PROFILER OFF)
 
-  OPTION(BUILD_GTESTS "Build test example cases with google test" ON)
+  OPTION(BUILD_GTESTS "Build test example cases with google test" OFF)
   OPTION(WITH_GLOG "Enable google log in this case" OFF)
 
   OPTION(BUILD_SHARED_LIBS "Build shared libraries" ON)
