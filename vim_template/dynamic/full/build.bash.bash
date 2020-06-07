@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2019-08-19 16:47:58
+# @last_modified_date: 2020-06-07 18:19:25
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -45,8 +45,10 @@ fi
 
 if [[ "\${CLEAN}" == "debug" ]]; then
   BUILD_TYPE=DEBUG
+  BUILD_GTEST=ON
 else
   BUILD_TYPE=RELEASE
+  BUILD_GTEST=OFF
 fi
 
 if [ ! -L ./bin/log ]; then
@@ -55,7 +57,7 @@ fi
 
 set -x
 cd build
-cmake .. -DCMAKE_BUILD_TYPE=\${BUILD_TYPE}
+cmake .. -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_GTESTS=\${BUILD_GTEST}
 make -j7
 set +x
 
