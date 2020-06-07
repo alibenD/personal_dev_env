@@ -4,7 +4,7 @@
 # @file: brew_package_install.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 16:06:39
-# @last_modified_date: 2020-04-05 00:10:03
+# @last_modified_date: 2020-06-07 17:59:35
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -22,4 +22,7 @@ brew install cmake \
   vim \
   axel \
   fzf
+
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
 set +x
