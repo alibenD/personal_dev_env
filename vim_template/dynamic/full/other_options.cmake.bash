@@ -5,7 +5,7 @@
 # @file: other_options.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:51:39
-# @last_modified_date: 2019-08-21 16:54:23
+# @last_modified_date: 2021-06-12 21:43:30
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -32,8 +32,8 @@ cat << EOF
   set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
   SET(CMAKE_INSTALL_RPATH "\${CMAKE_INSTALL_PREFIX}/lib")
   SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-  SET(EXECUTABLE_OUTPUT_PATH \${PROJECT_SOURCE_DIR}/bin)
-  SET(LIBRARY_OUTPUT_PATH \${PROJECT_SOURCE_DIR}/lib)
+  SET(EXECUTABLE_OUTPUT_PATH \${CMAKE_CURRENT_BINARY_DIR}/bin)
+  SET(LIBRARY_OUTPUT_PATH \${CMAKE_CURRENT_BINARY_DIR}/lib)
   SET(\${PROJECT_NAME}_LIB_TYPE STATIC)
   IF(BUILD_SHARED_LIBS)
     SET(BUILD_SHARED_LIBS SHARED)

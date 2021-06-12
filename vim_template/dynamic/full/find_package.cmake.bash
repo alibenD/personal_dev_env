@@ -5,7 +5,7 @@
 # @file: find_package.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:38:22
-# @last_modified_date: 2020-05-01 10:48:48
+# @last_modified_date: 2021-06-12 21:42:50
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -58,7 +58,7 @@ cat << EOF
 # Set&Add LIB PATH/LINKING_DIRECTORIES
   # Example: LINK_DIRECTORIES(\${CMAKE_INSTALL_PREFIX}/lib)
   LINK_DIRECTORIES(\${CMAKE_INSTALL_PREFIX}/lib)
-  LINK_DIRECTORIES(\${PROJECT_SOURCE_DIR}/lib)
+  LINK_DIRECTORIES(\${CMAKE_CURRENT_BINARY_DIR}/lib)
 
   SET(APPLE_LIBS \${COCOA_LIBRARY} \${IOKit_LIBRARY} \${OpenGL_LIBRARY} \${CoreVideo_LIBRARY})
   SET(APPLE_LIBS \${APPLE_LIBS} \${GLFW3_LIBRARY} \${ASSIMP_LIBRARY})

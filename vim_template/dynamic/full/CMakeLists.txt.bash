@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2019-08-21 17:10:23
+# @last_modified_date: 2021-06-12 19:39:03
 # @description: TODO
 #---***********************************************---
 
@@ -34,32 +34,32 @@ cmake_minimum_required(VERSION 3.10)
 project(${PROJECT_NAME})
 
 # Option
-  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake_config/option.cmake )
-    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake_config/option.cmake)
+  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake/option.cmake )
+    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake/option.cmake)
   ENDIF()
 
 # Compiler flag
-  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake_config/compiler_option.cmake )
-    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake_config/compiler_option.cmake)
+  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake/compiler_option.cmake )
+    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake/compiler_option.cmake)
   ENDIF()
 
   MESSAGE( STATUS "Project:  \${PROJECT_NAME}" )
   MESSAGE( STATUS "Build Type: " \${CMAKE_BUILD_TYPE})
   MESSAGE( STATUS "DEBUG POSTFIX: " \${CMAKE_DEBUG_POSTFIX})
 
-  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake_config/other_options.cmake )
-    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake_config/other_options.cmake)
+  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake/other_options.cmake )
+    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake/other_options.cmake)
   ENDIF()
 
-  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake_config/find_package.cmake )
-    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake_config/find_package.cmake)
+  IF( EXISTS \${PROJECT_SOURCE_DIR}/cmake/find_package.cmake )
+    INCLUDE(\${PROJECT_SOURCE_DIR}/cmake/find_package.cmake)
   ENDIF()
 
 # Set Subdir(src)
   ADD_SUBDIRECTORY(src)
   ADD_SUBDIRECTORY(examples)
   IF(BUILD_GTESTS)
-    ADD_SUBDIRECTORY(testing)
+    ADD_SUBDIRECTORY(test)
   ENDIF()
 
 # EXECUTABLE

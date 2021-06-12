@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2020-06-07 18:19:25
+# @last_modified_date: 2021-06-12 21:40:11
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -32,42 +32,75 @@ cat << EOF
 #---Variables
 CREATED_TIME=\`date '+%Y-%m-%d %H:%M:%S'\`
 CREATED_YEAR=\`date '+%Y'\`
-CLEAN=\$1
+
+SHORT_ARG="tco:"
+LONG_ARG="output:,toolchain:,build_type:,clean::"
+ARGS=\`getopt -o \${SHORT_ARG} -a --long \${LONG_ARG} -- "$@"\`
+
+BUILD_TYPE=RELEASE
+BUILD_GTEST=OFF
+OUTPUT_PATH=build
+CLEAN_FLAG=FALSE
+
+#eval set -- "\${ARGS}"
+
+while [ -n "\$1" ]
+do
+  case "\$1" in
+    -t)
+      echo "Build Test";
+      BUILD_GTEST=ON;
+      shift 1
+      ;;
+    -o|--output)
+      echo "Output: \$2"
+      OUTPUT_PATH=\$2;
+      shift 1
+      ;;
+    -c|--clean)
+      echo "Clean"
+      CLEAN_FLAG=ON;
+      shift 1
+      ;;
+    --build_type)
+      echo "Build_type: \$2"
+      BUILD_TYPE=\`echo \$2| tr "A-Z" "a-z"\`;
+      shift 1
+      ;;
+    --toolchain)
+      echo "Toolchain: \$2"
+      shift 1
+      ;;
+    --)
+      echo "Default: $1"
+      shift
+      break
+      ;;
+  esac
+  shift
+done
 #---Shell Command
-if [[ ! -d "build" ]]; then
-  mkdir -p build
-fi
-if [[ "\${CLEAN}" == "clean" ]]; then
-  rm -rf bin/*
-  rm -rf build/*
-  rm -rf lib/*
+if [[ "\${CLEAN_FLAG}" == "ON" ]]; then
+  rm -rf build
+  exit 0
 fi
 
-if [[ "\${CLEAN}" == "debug" ]]; then
-  BUILD_TYPE=DEBUG
-  BUILD_GTEST=ON
-else
-  BUILD_TYPE=RELEASE
-  BUILD_GTEST=OFF
-fi
-
-if [ ! -L ./bin/log ]; then
-  ln -s \`pwd\`/log ./bin/log
-fi
-
+mkdir -p \${OUTPUT_PATH}/\$BUILD_TYPE
 set -x
-cd build
-cmake .. -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_GTESTS=\${BUILD_GTEST}
-make -j7
+cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_GTESTS=\${BUILD_GTEST}
+ninja -C \$OUTPUT_PATH/\$BUILD_TYPE
 set +x
+if [[ -L \${OUTPUT_PATH}/latest_build ]]; then
+  rm \${OUTPUT_PATH}/latest_build
+fi
+ln -s \`realpath \${OUTPUT_PATH}\`/\${BUILD_TYPE} \`realpath \$OUTPUT_PATH\`/latest_build || exit
 
-if [[ "\${CLEAN}" == "debug" ]]; then
-  cd ..
-  ./run_test.sh
+if [[ "\${BUILD_GTEST}" == "ON" ]]; then
+  ninja -C \${OUTPUT_PATH}/\${BUILD_TYPE} test
 
   COVERAGE_FILE=coverage.info
-  REPORT_FOLDER=coverage_report
-  lcov --rc lcov_branch_coverage=1 -c -d build -o \${COVERAGE_FILE}_tmp
+  REPORT_FOLDER=\${OUTPUT_PATH}/\${BUILD_TYPE}/coverage_report
+  lcov --rc lcov_branch_coverage=1 -c -d \${OUTPUT_PATH}/\${BUILD_TYPE} -o \${COVERAGE_FILE}_tmp
   lcov --rc lcov_branch_coverage=1  -e \${COVERAGE_FILE}_tmp "*src*" -o \${COVERAGE_FILE}
   genhtml --rc genhtml_branch_coverage=1 \${COVERAGE_FILE} -o \${REPORT_FOLDER}
   rm -rf \${COVERAGE_FILE}_tmp
