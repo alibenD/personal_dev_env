@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2021-06-12 22:13:48
+# @last_modified_date: 2021-06-12 22:20:30
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -54,7 +54,7 @@ do
     -o|--output)
       echo "Output: \$2"
       OUTPUT_PATH=\$2;
-      shift 2
+      shift 1
       ;;
     -c|--clean)
       echo "Clean"
@@ -64,11 +64,11 @@ do
     --build_type)
       echo "Build_type: \$2"
       BUILD_TYPE=\`echo \$2| tr "A-Z" "a-z"\`;
-      shift 2
+      shift 1
       ;;
     --toolchain)
       echo "Toolchain: \$2"
-      shift 2
+      shift 1
       ;;
     --)
       echo "Default: $1"

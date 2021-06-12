@@ -5,7 +5,7 @@
 # @file: compiler_option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 10:23:24
-# @last_modified_date: 2021-06-12 22:11:09
+# @last_modified_date: 2021-06-12 22:19:48
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -36,7 +36,7 @@ cat << EOF
     SET(CXX_FLAG_WARNING_AS_ERROR "-Werror")
   ENDIF()
   IF(BUILD_GTESTS)
-  SET(CMAKE_CXX_FLAGS"\${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
+  SET(CMAKE_CXX_FLAGS" \${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
   ENDIF()
   IF(ENABLE_WARNING_EXTRA)
     SET(CXX_FLAG_WARNING_EXTRA "-Wextra")
