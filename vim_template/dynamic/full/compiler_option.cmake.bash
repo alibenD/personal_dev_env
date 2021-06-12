@@ -5,7 +5,7 @@
 # @file: compiler_option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 10:23:24
-# @last_modified_date: 2021-06-12 21:42:08
+# @last_modified_date: 2021-06-12 22:11:09
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -34,9 +34,9 @@ cat << EOF
   ENDIF()
   IF(ENABLE_WARNING_AS_ERROR)
     SET(CXX_FLAG_WARNING_AS_ERROR "-Werror")
-    IF(BUILD_GTESTS)
-    SET(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS_DEBUG} -ftest-coverage -fprofile-arcs")
-    ENDIF()
+  ENDIF()
+  IF(BUILD_GTESTS)
+  SET(CMAKE_CXX_FLAGS"\${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
   ENDIF()
   IF(ENABLE_WARNING_EXTRA)
     SET(CXX_FLAG_WARNING_EXTRA "-Wextra")
@@ -58,10 +58,10 @@ cat << EOF
 
   IF(CMAKE_BUILD_TYPE STREQUAL "RELEASE")
     ADD_DEFINITIONS(-DNDEBUG)
-    SET(CMAKE_CXX_FLAGS_RELEASE " -O3")
+    SET(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS} -O3")
   ELSEIF(CMAKE_BUILD_TYPE STREQUAL "DEBUG")
     SET(CMAKE_DEBUG_POSTFIX _debug)
-    SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g --coverage")
+    SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g --ftest-coverage -fprofile-arcs")
   ENDIF()
 
 # Set Compiler Flag
