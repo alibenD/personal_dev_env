@@ -5,7 +5,7 @@
 # @file: newproject.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-08-31 20:11:33
-# @last_modified_date: 2021-06-12 19:37:04
+# @last_modified_date: 2021-06-12 22:32:20
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -24,7 +24,7 @@ mkdir -p $PROJECT_NAME/test
 mkdir -p $PROJECT_NAME/examples
 #mkdir -p $PROJECT_NAME/log
 #mkdir -p $PROJECT_NAME/doc
-mkdir -p $PROJECT_NAME/config
+#mkdir -p $PROJECT_NAME/config
 #mkdir -p $PROJECT_NAME/build
 #mkdir -p $PROJECT_NAME/bin
 #mkdir -p $PROJECT_NAME/lib
@@ -51,7 +51,7 @@ TestingForDemoTEST_F.cc.bash $PROJECT_NAME > $PROJECT_NAME/test/TestingForDemoTE
 CMakeLists_bindir.txt.bash $PROJECT_NAME> $PROJECT_NAME/examples/CMakeLists.txt
 CMakeLists_testdir.txt.bash $PROJECT_NAME> $PROJECT_NAME/test/CMakeLists.txt
 build.bash.bash build.sh > $PROJECT_NAME/build.sh && chmod u+x $PROJECT_NAME/build.sh
-run_test.bash run_test.sh> $PROJECT_NAME/run_test.sh && chmod u+x $PROJECT_NAME/run_test.sh
+#run_test.bash run_test.sh> $PROJECT_NAME/run_test.sh && chmod u+x $PROJECT_NAME/run_test.sh
 .gitignore.bash .gitignore> $PROJECT_NAME/.gitignore
 
 echo "MIT License

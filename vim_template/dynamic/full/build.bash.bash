@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2021-06-12 22:20:30
+# @last_modified_date: 2021-06-20 20:09:21
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -59,7 +59,7 @@ do
     -c|--clean)
       echo "Clean"
       CLEAN_FLAG=ON;
-      exit 0
+      #exit 0
       ;;
     --build_type)
       echo "Build_type: \$2"
@@ -86,7 +86,7 @@ fi
 
 mkdir -p \${OUTPUT_PATH}/\$BUILD_TYPE
 set -x
-cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_GTESTS=\${BUILD_GTEST}
+cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_GTESTS=\${BUILD_GTEST}
 ninja -C \$OUTPUT_PATH/\$BUILD_TYPE
 set +x
 if [[ -L \${OUTPUT_PATH}/latest_build ]]; then
