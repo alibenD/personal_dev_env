@@ -36,7 +36,7 @@ else
   if command -v brew >/dev/null 2>&1; then 
     echo "Exists brew, `which brew`"
   else 
-    echo "No exists brew, installing brew at $HOME/dev/env"
+    echo "No exists brew, installing brew at $HOME/.local"
     /bin/bash brew_install.sh
     sudo chown -R `echo $USER` $HOME/dev
     /bin/bash brew_package_install.sh

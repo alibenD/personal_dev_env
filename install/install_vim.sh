@@ -35,7 +35,7 @@ cd vim-master
             --enable-luainterp=yes \
             --enable-gui=gtk2 \
             --enable-cscope \
-            --prefix=$HOME/dev/env
+            --prefix=$HOME/.local
 
 make install -j7
 set +x

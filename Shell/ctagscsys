@@ -26,5 +26,5 @@ CREATED_YEAR=`date '+%Y'`
 echo -e "\033[34m Created ctags in the `pwd`\033[0m"
 echo -e -n "\033[32m"
 (set -x 
-ctags -I __THROW --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --fields=+S  -R -f ~/.vim/systags /usr/include $HOME/dev/env/homebrew/include $HOME/dev/env/include)
+ctags -I __THROW --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --fields=+S  -R -f ~/.vim/systags /usr/include $HOME/.local/homebrew/include $HOME/.local/include)
 echo -e "\033[0m"

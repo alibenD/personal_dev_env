@@ -17,8 +17,8 @@ if [[ -z "${HOMEBREW_ON_LINUX-}" ]]; then
   #HOMEBREW_REPOSITORY="/usr/local/Homebrew"
   #HOMEBREW_CACHE="${HOME}/Library/Caches/Homebrew"
 
-  HOMEBREW_PREFIX="$HOME/dev/env"
-  HOMEBREW_REPOSITORY="$HOME/dev/env/Homebrew"
+  HOMEBREW_PREFIX="$HOME/.local"
+  HOMEBREW_REPOSITORY="$HOME/.local/Homebrew"
   HOMEBREW_CACHE="${HOME}/Library/Caches/Homebrew"
 
   STAT="stat -f"

@@ -4,7 +4,7 @@
     export HISTFILESIZE=10000
     export HISTSIZE=10000
 
-    export DEV_ENV=$HOME/dev/env
+    export DEV_ENV=$HOME/.local
     MANPATH="$DEV_ENV/homebrew/opt/findutils/libexec/gnuman:$MANPATH"
 
     export GT_HOME=/Users/aliben/project/source_code/googletest
