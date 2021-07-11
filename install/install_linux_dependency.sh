@@ -4,7 +4,7 @@
 # @file: install_linux_dependency.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:40:05
-# @last_modified_date: 2020-04-05 00:10:54
+# @last_modified_date: 2021-07-11 16:28:15
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -17,12 +17,12 @@ CREATED_YEAR=`date '+%Y'`
 #---Shell Command
 set -x
 sudo apt install -y cmake \
-  python \
-  python-dev \
+  python2.7 \
+  python2.7-dev \
   python3 \
   python3-dev \
   libncurses5-dev \
-  libpython-dev \
+  libpython2.7-dev \
   libpython3-dev \
   git \
   bash-completion \
@@ -32,6 +32,12 @@ sudo apt install -y cmake \
   build-essential \
   gdb \
   powerline \
-  axel
+  axel \
+  zsh \
+  clang \
+  gcc-multilib \
+  ninja-build \
+  tig \
+  proxychains4
 
 set +x

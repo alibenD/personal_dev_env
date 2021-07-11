@@ -10,5 +10,5 @@
   #alias gnug++=$DEV_ENV/env/homebrew/opt/gcc/bin/g++-8
 
   alias lg=logout
-  alias vi='vi -X'
+  alias vi='vim -X'
   #alias git='/usr/bin/git'

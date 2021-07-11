@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2020-04-05 00:10:30
+# @last_modified_date: 2021-07-07 21:45:55
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -15,6 +15,8 @@
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
 set -x
+git submodule init
+git submodule update
 git submodule foreach --recursive git submodule init
 git submodule foreach --recursive git submodule update
 #---Shell Command
@@ -27,7 +29,7 @@ if [[ "$(uname)" = "Linux" ]]; then
   echo "Linux system, default using apt to manage package"
   echo "Install dependency"
   /bin/bash install_linux_dependency.sh
-  if [[ "`vi --version | grep python3`" = "" ]]; then
+  if [[ "`vim --version | grep +python3`" = "" ]]; then
     /bin/bash install_vim.sh
   fi
 else
@@ -41,6 +43,9 @@ else
   fi
 fi
 
+cp ../nerd_font/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf ~/.local/share/fonts
+fc-cache -vf ~/.local/share/fonts
+
 /bin/bash install_fzf.sh
 source restore_shell_profile.bash
 /bin/bash install_zsh_plugin.sh
@@ -53,4 +58,6 @@ if [[ `echo $SHELL` != "/bin/zsh" ]]; then
   echo "Changing Login Shell from $SHELL to /bin/zsh"
   chsh -s /bin/zsh
 fi
+
+
 set +x

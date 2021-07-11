@@ -5,7 +5,7 @@
 # @file: compiler_option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 10:23:24
-# @last_modified_date: 2021-06-12 22:27:48
+# @last_modified_date: 2021-07-07 23:50:06
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -73,13 +73,13 @@ cat << EOF
       \${CXX_FLAG_WARNING_AS_ERROR} \\
       -std=c++14 \\
       -fPIC \\
-      -Wno-unused-private-field \\
       -Wno-unused-parameter \\
       -Wno-unused-variable \\
       -ftemplate-backtrace-limit=0 \\
-      -march=native \\
       "
       )
+      #-Wno-unused-private-field \\
+      #-march=native \\
       #-fcolor-diagnostics \\
       #-Wdeprecated-register \\
       #-Wdeprecated-declarations \\
