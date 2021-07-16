@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2021-07-07 21:45:55
+# @last_modified_date: 2021-07-15 22:16:44
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -45,6 +45,8 @@ fi
 
 cp ../nerd_font/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf ~/.local/share/fonts
 fc-cache -vf ~/.local/share/fonts
+
+sudo cp ../etc/proxychains4.conf /etc/
 
 /bin/bash install_fzf.sh
 source restore_shell_profile.bash

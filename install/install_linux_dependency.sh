@@ -4,7 +4,7 @@
 # @file: install_linux_dependency.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:40:05
-# @last_modified_date: 2021-07-11 16:28:15
+# @last_modified_date: 2021-07-16 22:33:22
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -38,6 +38,8 @@ sudo apt install -y cmake \
   gcc-multilib \
   ninja-build \
   tig \
-  proxychains4
+  proxychains4 \
+  preload \
+  libbullet-dev
 
 set +x
