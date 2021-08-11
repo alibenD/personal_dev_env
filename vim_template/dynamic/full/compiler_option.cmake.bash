@@ -5,7 +5,7 @@
 # @file: compiler_option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 10:23:24
-# @last_modified_date: 2021-07-07 23:50:06
+# @last_modified_date: 2021-08-11 22:02:06
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -65,13 +65,13 @@ cat << EOF
   ENDIF()
 
 # Set Compiler Flag
-  SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD 17)
+IF(CMAKE_CXX_COMPILER_ID MATCHES GNU)
   SET(CMAKE_CXX_FLAGS 
      "\${CMAKE_CXX_FLAGS} \\
       \${CXX_FLAG_ALL_WARNING} \\
       \${CXX_FLAG_WARNING_EXTRA} \\
       \${CXX_FLAG_WARNING_AS_ERROR} \\
-      -std=c++14 \\
       -fPIC \\
       -Wno-unused-parameter \\
       -Wno-unused-variable \\
@@ -84,6 +84,8 @@ cat << EOF
       #-Wdeprecated-register \\
       #-Wdeprecated-declarations \\
   #SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
+ELSE()
+ENDIF()
 
 
   # Cross-platform check

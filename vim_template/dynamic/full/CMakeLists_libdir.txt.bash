@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-06-20 20:08:36
+# @last_modified_date: 2021-08-11 22:02:56
 # @description: TODO
 #---***********************************************---
 
@@ -28,12 +28,44 @@ cat << EOF
 #---****************************************************************---
 
 FILE(GLOB_RECURSE HEADERS
-  ../include/$PROJECT_NAME/*/*.h*
-  ../include/$PROJECT_NAME/*.h*
+  ../include/\$PROJECT_NAME/*/*.h*
+  ../include/\$PROJECT_NAME/*.h*
   ../include/*.h*
   )
 FILE(GLOB_RECURSE SOURCES *.cc *.cpp *.c *.cxx)
 
-ADD_LIBRARY($PROJECT_NAME \${HEADERS} \${SOURCES})
-TARGET_LINK_LIBRARIES($PROJECT_NAME \${THIRD_PARTY_LIBS})
+ADD_LIBRARY(\${PROJECT_NAME}_objs
+  OBJECT
+    \${HEADERS}
+    \${SOURCES}
+)
+
+SET_TARGET_PROPERTIES(\${PROJECT_NAME}_objs
+  PROPERTIES
+    POSITION_INDEPENDENT_CODE 1
+)
+
+ADD_LIBRARY(\${PROJECT_NAME}_shared
+  SHARED
+    \$<TARGET_OBJECTS:\${PROJECT_NAME}_objs>
+)
+
+SET_TARGET_PROPERTIES(\${PROJECT_NAME}_shared
+  PROPERTIES
+    OUTPUT_NAME \${PROJECT_NAME}
+)
+
+ADD_LIBRARY(\${PROJECT_NAME}_static
+  STATIC
+    \$<TARGET_OBJECTS:\${PROJECT_NAME}_objs>
+)
+
+SET_TARGET_PROPERTIES(\${PROJECT_NAME}_static
+  PROPERTIES
+    OUTPUT_NAME \${PROJECT_NAME}
+)
+
+
+TARGET_LINK_LIBRARIES(\${PROJECT_NAME}_static \${THIRD_PARTY_LIBS})
+TARGET_LINK_LIBRARIES(\${PROJECT_NAME}_shared \${THIRD_PARTY_LIBS})
 EOF
