@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-06-12 19:39:03
+# @last_modified_date: 2021-08-08 17:49:03
 # @description: TODO
 #---***********************************************---
 
@@ -28,7 +28,7 @@ cat << EOF
 #---****************************************************************---
 
 # Cmake version required
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
 #project name
 project(${PROJECT_NAME})

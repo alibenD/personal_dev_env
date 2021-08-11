@@ -4,7 +4,7 @@
 # @file: install_linux_dependency.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:40:05
-# @last_modified_date: 2021-07-16 22:33:22
+# @last_modified_date: 2021-08-08 18:15:34
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -40,6 +40,12 @@ sudo apt install -y cmake \
   tig \
   proxychains4 \
   preload \
-  libbullet-dev
+  libbullet-dev \
+  exuberant-ctags \
+  doxygen \
+  doxygen-gui \
+  lcov \
+  net-tools \
+  cmake-gui
 
 set +x

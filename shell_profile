@@ -145,5 +145,6 @@ elif [[ "$SHELL" == "/bin/zsh" ]]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+setopt nonomatch
 
 #source /opt/ros/noetic/setup.zsh
