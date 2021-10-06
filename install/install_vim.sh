@@ -4,7 +4,7 @@
 # @file: install_vim.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 15:46:49
-# @last_modified_date: 2020-04-05 00:11:03
+# @last_modified_date: 2021-10-06 15:17:40
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -27,14 +27,15 @@ fi
 cd $VIM_DOWNLOAD_PATH
 unzip vim-master.zip
 cd vim-master
-./configure --with-features=huge \
-            --enable-multibyte \
-            --enable-rubyinterp=yes \
-            --enable-python3interp=yes \
-            --enable-perlinterp=yes \
-            --enable-luainterp=yes \
-            --enable-gui=gtk2 \
-            --enable-cscope \
+./configure --with-features=huge        \
+            --enable-multibyte          \
+            --enable-rubyinterp=yes     \
+            --enable-python3interp=yes  \
+            --enable-perlinterp=yes     \
+            --enable-luainterp=yes      \
+            --enable-gui=gtk2           \
+            --enable-cscope             \
+            --with-x                    \
             --prefix=$HOME/.local
 
 make install -j7

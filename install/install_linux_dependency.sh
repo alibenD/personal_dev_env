@@ -4,7 +4,7 @@
 # @file: install_linux_dependency.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:40:05
-# @last_modified_date: 2021-08-12 22:50:50
+# @last_modified_date: 2021-10-06 15:27:21
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -47,6 +47,9 @@ sudo apt install -y cmake \
   lcov \
   net-tools \
   cmake-gui \
-  valgrind
+  valgrind  \
+  libx11-dev \
+  dbus-x11  \
+  libxtst-dev
 
 set +x
