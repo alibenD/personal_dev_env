@@ -2,10 +2,10 @@
 
 #---Automatically Generated from template 'bash' wrote by @aliben---
 # @Copyright (C) 2019 All rights reserved.
-# @file: TestingForDemoTEST.cc.bash
+# @file: DummyTest.cc.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-16 18:07:51
-# @last_modified_date: 2019-08-16 18:53:18
+# @last_modified_date: 2021-11-09 23:44:13
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -14,7 +14,7 @@
 #---Variables
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
-PROJECT_NAME=$1
+PROJECT_NAME=$2
 
 #---Shell Command
 
@@ -29,22 +29,16 @@ cat << EOF
   *-----------------------------------------------*/
 
 //INCLUDE
-#include <$PROJECT_NAME/Test_Demo.hh>
+#include <$PROJECT_NAME/dummy_test.hh>
 #include <gtest/gtest.h>
 
 //CODE
 
 using namespace Demo;
 
-TEST(DemoFuncTest, return10)
+TEST(DummyTest, Empty)
 {
-  EXPECT_EQ(10.0, func_return10());
-};
-
-TEST(DemoFuncTest, return20)
-{
-  EXPECT_EQ(20.0, func_return20());
-};
+}
 
 int main(int argc, char** argv)
 {

@@ -5,7 +5,7 @@
 # @file: compiler_option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 10:23:24
-# @last_modified_date: 2021-08-11 22:02:06
+# @last_modified_date: 2021-11-09 23:41:01
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -28,80 +28,46 @@ cat << EOF
 #---****************************************************************---
 
 # Compiler Option
-  MESSAGE(STATUS "Setting up compiler flag")
-  IF(ENABLE_ALL_WARNING)
-    SET(CXX_FLAG_ALL_WARNING "-Wall")
-  ENDIF()
-  IF(ENABLE_WARNING_AS_ERROR)
-    SET(CXX_FLAG_WARNING_AS_ERROR "-Werror")
-  ENDIF()
-  IF(BUILD_GTESTS)
-    SET(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
-  ENDIF()
-  IF(ENABLE_WARNING_EXTRA)
-    SET(CXX_FLAG_WARNING_EXTRA "-Wextra")
-  ENDIF()
-  IF(ENABLE_VERBOSE)
-    SET(CMAKE_VERBOSE_MAKEFILE ON)
-  ENDIF()
-  #IF(ENABLE_PROFILER)
-  #  IF (WIN32)
-  #    MESSAGE(STATUS "Now is windows")
-  #  ELSEIF (APPLE)
-  #    MESSAGE(STATUS "Now is Apple systens.")
-  #  ELSEIF (UNIX)
-  #    MESSAGE(STATUS "Now is UNIX-like OS's.")
-  #    SET(CXX_FLAG_PROFILER "-pg")
-  #  ENDIF ()
-  #ENDIF()
+  message(STATUS "Setting up compiler flag")
+  if(ENABLE_ALL_WARNING)
+    set(CXX_FLAG_ALL_WARNING "-Wall")
+  endif()
+  if(ENABLE_WARNING_AS_ERROR)
+    set(CXX_FLAG_WARNING_AS_ERROR "-Werror")
+  endif()
+  if(BUILD_TESTS)
+    set(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
+  endif()
+  if(ENABLE_WARNING_EXTRA)
+    set(CXX_FLAG_WARNING_EXTRA "-Wextra")
+  endif()
+  if(ENABLE_VERBOSE)
+    set(CMAKE_VERBOSE_MAKEFILE ON)
+  endif()
 
 
-  IF(CMAKE_BUILD_TYPE STREQUAL "RELEASE")
-    ADD_DEFINITIONS(-DNDEBUG)
-    SET(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS} -O3")
-  ELSEIF(CMAKE_BUILD_TYPE STREQUAL "DEBUG")
-    SET(CMAKE_DEBUG_POSTFIX _debug)
-    SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g --ftest-coverage -fprofile-arcs")
-  ENDIF()
+  if(CMAKE_BUILD_TYPE STREQUAL "RELEASE")
+  elseif(CMAKE_BUILD_TYPE STREQUAL "DEBUG")
+    set(CMAKE_DEBUG_POSTFIX _debug)
+  endif()
 
 # Set Compiler Flag
-SET(CMAKE_CXX_STANDARD 17)
-IF(CMAKE_CXX_COMPILER_ID MATCHES GNU)
-  SET(CMAKE_CXX_FLAGS 
-     "\${CMAKE_CXX_FLAGS} \\
-      \${CXX_FLAG_ALL_WARNING} \\
-      \${CXX_FLAG_WARNING_EXTRA} \\
-      \${CXX_FLAG_WARNING_AS_ERROR} \\
-      -fPIC \\
-      -Wno-unused-parameter \\
-      -Wno-unused-variable \\
-      -ftemplate-backtrace-limit=0 \\
-      "
-      )
-      #-Wno-unused-private-field \\
-      #-march=native \\
-      #-fcolor-diagnostics \\
-      #-Wdeprecated-register \\
-      #-Wdeprecated-declarations \\
-  #SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
-ELSE()
-ENDIF()
-
+set(CMAKE_CXX_STANDARD 17)
 
   # Cross-platform check
-  #IF("\${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-  #  SET(CMAKE_CXX_FLAGS_DEBUG "\${CMAKE_CXX_FLAGS} -O0 -g")
-  #  SET(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS} -O3")
-  #ELSEIF(CMAKE_HOST_APPLE)
-  #  SET(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS} -O3")
-  #  SET(CMAKE_CXX_FLAGS_DEBUG "\${CMAKE_CXX_FLAGS} -O0 -g")
-  #ELSEIF("\${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
-  #  SET(CMAKE_CXX_FLAGS_RELEASE "-O3")
-  #  SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
-  #  SET(CMAKE_EXE_LINKER_FLAGS_COVERAGE "\${CMAKE_EXE_LINKER_FLAGS_DEBUG}" --coverage)
-  #  SET(CMAKE_SHARED_LINKER_FLAGS_COVERAGE "\${CMAKE_SHARED_LINKER_FLAGS_DEBUG}" --coverage)
-  #ELSEIF(CMAKE_CXX_COMPILER_ID MATCHES "^MSVC$")
-  #  ADD_DEFINITION("-D _USE_MATH_DEFINES /bigobj /wd4305 /wd4244 /MP")
-  #  ADD_DEFINITION("-D PROJECT_CORE_EXPORTS")
-  #ENDIF()
+  #if("\${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+  #  set(CMAKE_CXX_FLAGS_DEBUG "\${CMAKE_CXX_FLAGS} -O0 -g")
+  #  set(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS} -O3")
+  #elseif(CMAKE_HOST_APPLE)
+  #  set(CMAKE_CXX_FLAGS_RELEASE "\${CMAKE_CXX_FLAGS} -O3")
+  #  set(CMAKE_CXX_FLAGS_DEBUG "\${CMAKE_CXX_FLAGS} -O0 -g")
+  #elseif("\${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+  #  set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+  #  set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
+  #  set(CMAKE_EXE_LINKER_FLAGS_COVERAGE "\${CMAKE_EXE_LINKER_FLAGS_DEBUG}" --coverage)
+  #  set(CMAKE_SHARED_LINKER_FLAGS_COVERAGE "\${CMAKE_SHARED_LINKER_FLAGS_DEBUG}" --coverage)
+  #elseif(CMAKE_CXX_COMPILER_ID MATCHES "^MSVC$")
+  #  add_definition("-D _USE_MATH_DEFINES /bigobj /wd4305 /wd4244 /MP")
+  #  add_definition("-D PROJECT_CORE_EXPORTS")
+  #endif()
 EOF

@@ -5,7 +5,7 @@
 # @file: TestingForDemoTEST_F.cc.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-16 18:33:16
-# @last_modified_date: 2019-08-16 18:54:30
+# @last_modified_date: 2021-11-09 23:37:20
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -14,7 +14,7 @@
 #---Variables
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
-PROJECT_NAME=$1
+PROJECT_NAME=$2
 
 #---Shell Command
 
@@ -29,14 +29,14 @@ cat << EOF
   *-----------------------------------------------*/
 
 //INCLUDE
-#include <$PROJECT_NAME/Test_Demo.hh>
+#include <$PROJECT_NAME/dummy_test.hh>
 #include <gtest/gtest.h>
 
 //CODE
 
 using namespace Demo;
 
-class DemoTest : public testing::Test
+class DummyTestSuite : public testing::Test
 {
   protected:
     Obj* ptr_obj_;
@@ -51,7 +51,7 @@ class DemoTest : public testing::Test
     }
 };
 
-TEST_F(DemoTest, ObjTestCase1)
+TEST_F(DummyTestSuite, ObjTestCase1)
 {
   EXPECT_EQ(1, ptr_obj_->func_return1());
   EXPECT_EQ(2, ptr_obj_->func_return2());
@@ -60,7 +60,7 @@ TEST_F(DemoTest, ObjTestCase1)
   EXPECT_EQ(10, ptr_obj_->getValue());
 };
 
-TEST_F(DemoTest, ObjTestCase2)
+TEST_F(DummyTestSuite, ObjTestCase2)
 {
   EXPECT_EQ(2, ptr_obj_->getValue());
 }

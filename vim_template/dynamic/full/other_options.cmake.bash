@@ -5,7 +5,7 @@
 # @file: other_options.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:51:39
-# @last_modified_date: 2021-06-12 21:43:30
+# @last_modified_date: 2021-11-09 22:48:14
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -27,15 +27,15 @@ cat << EOF
 # @description: TODO
 #---****************************************************************---
 
-  SET(CMAKE_MACOSX_RPATH 1)
+  set(CMAKE_MACOSX_RPATH 1)
   set(CMAKE_SKIP_BUILD_RPATH FALSE)                 # Compile with RPATH
   set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-  SET(CMAKE_INSTALL_RPATH "\${CMAKE_INSTALL_PREFIX}/lib")
-  SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-  SET(EXECUTABLE_OUTPUT_PATH \${CMAKE_CURRENT_BINARY_DIR}/bin)
-  SET(LIBRARY_OUTPUT_PATH \${CMAKE_CURRENT_BINARY_DIR}/lib)
-  SET(\${PROJECT_NAME}_LIB_TYPE STATIC)
-  IF(BUILD_SHARED_LIBS)
-    SET(BUILD_SHARED_LIBS SHARED)
-  ENDIF()
+  set(CMAKE_INSTALL_RPATH "\${CMAKE_INSTALL_PREFIX}/lib")
+  set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  set(EXECUTABLE_OUTPUT_PATH \${CMAKE_CURRENT_BINARY_DIR}/bin)
+  set(LIBRARY_OUTPUT_PATH \${CMAKE_CURRENT_BINARY_DIR}/lib)
+  set(\${PROJECT_NAME}_LIB_TYPE STATIC)
+  if(BUILD_SHARED_LIBS)
+    set(BUILD_SHARED_LIBS SHARED)
+  endif()
 EOF

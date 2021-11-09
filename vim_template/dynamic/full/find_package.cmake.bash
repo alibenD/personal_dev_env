@@ -5,7 +5,7 @@
 # @file: find_package.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:38:22
-# @last_modified_date: 2021-06-12 21:42:50
+# @last_modified_date: 2021-11-09 23:44:12
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -28,44 +28,49 @@ cat << EOF
 #---****************************************************************---
 
 # Add extra Find module
-  LIST(APPEND CMAKE_MODULE_PATH \${PROJECT_SOURCE_DIR}/cmake_modules)
+  list(APPEND CMAKE_MODULE_PATH \${PROJECT_SOURCE_DIR}/cmake_modules)
 # Find *Config.cmake
   # Example: find_package(OpenCV REQUIRED)
-  IF(BUILD_GTESTS)
-    ENABLE_TESTING()
+  if(BUILD_TESTS)
     find_package(GTest REQUIRED)
     find_package(Threads REQUIRED)
-    INCLUDE_DIRECTORIES(\${GTEST_INCLUDE_DIRS})
-    SET(TEST_LIBS
+    include_directories(\${GTEST_INCLUDE_DIRS})
+    set(TEST_LIBS
     \${GTEST_BOTH_LIBRARIES}
     \${CMAKE_THREAD_LIBS_INIT})
-  ENDIF()
-  IF(WITH_GLOG)
-    ADD_DEFINITIONS(-DENABLE_GLOG)
-  ENDIF()
+  endif()
+  if(WITH_GLOG)
+    add_definitions(-DENABLE_GLOG)
+  endif()
   #find_package(OpenCV)
   #find_package(Eigen3)
+  set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+  set(THREADS_PREFER_PTHREAD_FLAG TRUE)
+  find_package(Threads REQUIRED)
+
+  find_program(MEMORYCHECK_COMMAND NAMES valgrind)
+  set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
+  include(CTest)
 
 # Set&Add INCLUDE PATH
-  # Example: SET ( VPATH_NAME PATH )
-  #          INCLUDE_DIRECTORIES(\${VPATH_NAME})
-  INCLUDE_DIRECTORIES(\${PROJECT_SOURCE_DIR}/include)
-  INCLUDE_DIRECTORIES(\${PROJECT_SOURCE_DIR}/build/include)
-  INCLUDE_DIRECTORIES(\${CMAKE_INSTALL_PREFIX}/include)
-  INCLUDE_DIRECTORIES(\${OPENCV_INCLUDE_DIRS})
-  INCLUDE_DIRECTORIES(\${EIGEN3_INCLUDE_DIRS})
+  # Example: set ( VPATH_NAME PATH )
+  #          include_directories(\${VPATH_NAME})
+  include_directories(\${PROJECT_SOURCE_DIR}/include)
+  include_directories(\${PROJECT_SOURCE_DIR}/build/include)
+  include_directories(\${CMAKE_INSTALL_PREFIX}/include)
+  include_directories(\${OPENCV_INCLUDE_DIRS})
+  include_directories(\${EIGEN3_INCLUDE_DIRS})
 
 # Set&Add LIB PATH/LINKING_DIRECTORIES
-  # Example: LINK_DIRECTORIES(\${CMAKE_INSTALL_PREFIX}/lib)
-  LINK_DIRECTORIES(\${CMAKE_INSTALL_PREFIX}/lib)
-  LINK_DIRECTORIES(\${CMAKE_CURRENT_BINARY_DIR}/lib)
+  # Example: link_directories(\${CMAKE_INSTALL_PREFIX}/lib)
+  link_directories(\${CMAKE_INSTALL_PREFIX}/lib)
+  link_directories(\${CMAKE_CURRENT_BINARY_DIR}/lib)
 
-  SET(APPLE_LIBS \${COCOA_LIBRARY} \${IOKit_LIBRARY} \${OpenGL_LIBRARY} \${CoreVideo_LIBRARY})
-  SET(APPLE_LIBS \${APPLE_LIBS} \${GLFW3_LIBRARY} \${ASSIMP_LIBRARY})
-  SET(LIBS \${LIBS} \${APPLE_LIBS})
+  set(APPLE_LIBS \${COCOA_LIBRARY} \${IOKit_LIBRARY} \${OpenGL_LIBRARY} \${CoreVideo_LIBRARY})
+  set(APPLE_LIBS \${APPLE_LIBS} \${GLFW3_LIBRARY} \${ASSIMP_LIBRARY})
+  set(LIBS \${LIBS} \${APPLE_LIBS})
 
-  SET( THIRD_PARTY_LIBS
+  set( THIRD_PARTY_LIBS
     \${THIRD_PARTY_LIBS}
-    #\${OpenCV_LIBS}
   )
 EOF

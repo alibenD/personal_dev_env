@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-08-11 22:02:56
+# @last_modified_date: 2021-11-09 22:54:58
 # @description: TODO
 #---***********************************************---
 
@@ -27,45 +27,86 @@ cat << EOF
 # @description: TODO
 #---****************************************************************---
 
-FILE(GLOB_RECURSE HEADERS
+file(GLOB_RECURSE HEADERS
   ../include/\$PROJECT_NAME/*/*.h*
   ../include/\$PROJECT_NAME/*.h*
   ../include/*.h*
   )
-FILE(GLOB_RECURSE SOURCES *.cc *.cpp *.c *.cxx)
+file(GLOB_RECURSE SOURCES *.cc *.cpp *.c *.cxx)
 
-ADD_LIBRARY(\${PROJECT_NAME}_objs
+add_library(\${PROJECT_NAME}_objs
   OBJECT
-    \${HEADERS}
-    \${SOURCES}
+  ""
 )
 
-SET_TARGET_PROPERTIES(\${PROJECT_NAME}_objs
+target_include_directories(\${PROJECT_NAME}_objs
+  PUBLIC
+    \${CMAKE_CURRENT_SOURCE_DIR}/include
+  PRIVATE
+    \${CMAKE_CURRENT_BINARY_DIR}
+)
+
+target_sources(\${PROJECT_NAME}_objs
+  PRIVATE
+    \${SOURCES}
+  )
+
+list(APPEND LIBRARY_CXX_FLAGS
+    \${CXX_FLAG_WARNING_AS_ERROR}
+    \${CXX_FLAG_WARNING_AS_ERROR}
+    \${CXX_FLAG_ALL_WARNING}
+    "-Wno-unused-parameter"
+    "-Wno-unused-variable"
+  )
+
+# todo: manager build_type
+if(CMAKE_BUILD_TYPE STREQUAL "Release" OR CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+  #list(APPEND LIBRARY_CXX_FLAGS
+  #      "-DNDEBUG"
+  #  )
+elseif()
+  list(APPEND LIBRARY_CXX_FLAGS
+        "-O0"
+        "-g"
+        "--ftest-coverage"
+        "-fprofile-arcs"
+    )
+endif()
+
+target_compile_options(\${PROJECT_NAME}_objs
+  PRIVATE
+    \${LIBRARY_CXX_FLAGS}
+  )
+
+set_target_properties(\${PROJECT_NAME}_objs
   PROPERTIES
     POSITION_INDEPENDENT_CODE 1
+    CXX_STANDARD_REQUIRED ON
+    CXX_STANDARD 17
+    CXX_EXTENSIONS OFF
 )
 
-ADD_LIBRARY(\${PROJECT_NAME}_shared
+add_library(\${PROJECT_NAME}_shared
   SHARED
     \$<TARGET_OBJECTS:\${PROJECT_NAME}_objs>
 )
 
-SET_TARGET_PROPERTIES(\${PROJECT_NAME}_shared
-  PROPERTIES
-    OUTPUT_NAME \${PROJECT_NAME}
-)
-
-ADD_LIBRARY(\${PROJECT_NAME}_static
+add_library(\${PROJECT_NAME}_static
   STATIC
     \$<TARGET_OBJECTS:\${PROJECT_NAME}_objs>
 )
 
-SET_TARGET_PROPERTIES(\${PROJECT_NAME}_static
+set_target_properties(\${PROJECT_NAME}_shared
+  PROPERTIES
+    OUTPUT_NAME \${PROJECT_NAME}
+)
+
+set_target_properties(\${PROJECT_NAME}_static
   PROPERTIES
     OUTPUT_NAME \${PROJECT_NAME}
 )
 
 
-TARGET_LINK_LIBRARIES(\${PROJECT_NAME}_static \${THIRD_PARTY_LIBS})
-TARGET_LINK_LIBRARIES(\${PROJECT_NAME}_shared \${THIRD_PARTY_LIBS})
+target_link_libraries(\${PROJECT_NAME}_static \${THIRD_PARTY_LIBS})
+target_link_libraries(\${PROJECT_NAME}_shared \${THIRD_PARTY_LIBS})
 EOF

@@ -5,7 +5,7 @@
 # @file: newproject.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-08-31 20:11:33
-# @last_modified_date: 2021-06-12 22:32:20
+# @last_modified_date: 2021-11-09 23:50:23
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -29,7 +29,7 @@ mkdir -p $PROJECT_NAME/examples
 #mkdir -p $PROJECT_NAME/bin
 #mkdir -p $PROJECT_NAME/lib
 mkdir -p $PROJECT_NAME/cmake_modules
-mkdir -p $PROJECT_NAME/cmake
+mkdir -p $PROJECT_NAME/cmake/template
 
 #hello_world.cc.bash $PROJECT_NAME> $PROJECT_NAME/examples/hello_world.cc
 CMakeLists.txt.bash $PROJECT_NAME> $PROJECT_NAME/CMakeLists.txt
@@ -39,17 +39,22 @@ option.cmake.bash option.cmake > $PROJECT_NAME/cmake/option.cmake
 compiler_option.cmake.bash compiler_option.cmake > $PROJECT_NAME/cmake/compiler_option.cmake
 other_options.cmake.bash other_option.cmake > $PROJECT_NAME/cmake/other_options.cmake
 find_package.cmake.bash find_package.cmake > $PROJECT_NAME/cmake/find_package.cmake
+config.h.in.bash config.h.in > ${PROJECT_NAME}/cmake/template/config.h.in
+colors.cmake.bash colors.cmake > ${PROJECT_NAME}/cmake/colors.cmake
+system_detector.cmake.bash system_detector.cmake > ${PROJECT_NAME}/cmake/system_detector.cmake
 
 #print_hello.cc.bash $PROJECT_NAME> $PROJECT_NAME/src/print_hello.cc
 #print_hello.hh.bash $PROJECT_NAME> $PROJECT_NAME/include/$PROJECT_NAME/print_hello.hh
-Test_Demo.hh.bash $PROJECT_NAME > $PROJECT_NAME/include/$PROJECT_NAME/Test_Demo.hh
-Test_Demo.cc.bash $PROJECT_NAME > $PROJECT_NAME/src/Test_Demo.cc
+dummy_test.hh.bash dummy_test.hh > $PROJECT_NAME/include/$PROJECT_NAME/dummy_test.hh
+dummy_test.cc.bash dummy_test.cc $PROJECT_NAME> $PROJECT_NAME/src/dummy_test.cc
+processor-info.cc.bash processor-info.cc > $PROJECT_NAME/examples/processor-info.cc
+sanitize_example.cc.bash sanitize_example.cc $PROJECT_NAME > $PROJECT_NAME/examples/sanitize_example.cc
 
-TestingForDemoTEST.cc.bash $PROJECT_NAME > $PROJECT_NAME/test/TestingForDemoTEST.cc
-TestingForDemoTEST_F.cc.bash $PROJECT_NAME > $PROJECT_NAME/test/TestingForDemoTEST_F.cc
+DummyTest.cc.bash DummyTest.cc $PROJECT_NAME > $PROJECT_NAME/test/DummyTest.cc
+DummyTest_F.cc.bash DummyTest_F.cc $PROJECT_NAME > $PROJECT_NAME/test/DummyTest_F.cc
 
-CMakeLists_bindir.txt.bash $PROJECT_NAME> $PROJECT_NAME/examples/CMakeLists.txt
-CMakeLists_testdir.txt.bash $PROJECT_NAME> $PROJECT_NAME/test/CMakeLists.txt
+CMakeLists_bindir.txt.bash CMakeLists.txt > $PROJECT_NAME/examples/CMakeLists.txt
+CMakeLists_testdir.txt.bash CMakeLists.txt > $PROJECT_NAME/test/CMakeLists.txt
 build.bash.bash build.sh > $PROJECT_NAME/build.sh && chmod u+x $PROJECT_NAME/build.sh
 #run_test.bash run_test.sh> $PROJECT_NAME/run_test.sh && chmod u+x $PROJECT_NAME/run_test.sh
 .gitignore.bash .gitignore> $PROJECT_NAME/.gitignore

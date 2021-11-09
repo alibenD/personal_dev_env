@@ -5,7 +5,7 @@
 # @file: Test_Demo.cc.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-16 17:40:19
-# @last_modified_date: 2019-08-16 18:07:10
+# @last_modified_date: 2021-11-09 23:35:51
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -13,7 +13,7 @@
 
 #---Variables
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
-PROJECT_NAME=$1
+PROJECT_NAME=$2
 
 #---Shell Command
 
@@ -28,7 +28,7 @@ cat << EOF
   *-----------------------------------------------*/
 
 //INCLUDE
-#include <$PROJECT_NAME/Test_Demo.hh>
+#include <$PROJECT_NAME/dummy_test.hh>
 #include <iostream>
 
 //CODE

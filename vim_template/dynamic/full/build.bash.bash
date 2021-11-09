@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2021-06-20 20:09:21
+# @last_modified_date: 2021-11-09 23:13:07
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -38,7 +38,7 @@ LONG_ARG="output:,toolchain:,build_type:,clean::"
 ARGS=\`getopt -o \${SHORT_ARG} -a --long \${LONG_ARG} -- "$@"\`
 
 BUILD_TYPE=RELEASE
-BUILD_GTEST=OFF
+BUILD_TESTS=OFF
 OUTPUT_PATH=build
 CLEAN_FLAG=FALSE
 
@@ -49,7 +49,7 @@ do
   case "\$1" in
     -t)
       echo "Build Test";
-      BUILD_GTEST=ON;
+      BUILD_TESTS=ON;
       ;;
     -o|--output)
       echo "Output: \$2"
@@ -86,7 +86,7 @@ fi
 
 mkdir -p \${OUTPUT_PATH}/\$BUILD_TYPE
 set -x
-cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_GTESTS=\${BUILD_GTEST}
+cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_GTESTS=\${BUILD_TESTS}
 ninja -C \$OUTPUT_PATH/\$BUILD_TYPE
 set +x
 if [[ -L \${OUTPUT_PATH}/latest_build ]]; then
@@ -94,7 +94,7 @@ if [[ -L \${OUTPUT_PATH}/latest_build ]]; then
 fi
 ln -s \`realpath \${OUTPUT_PATH}\`/\${BUILD_TYPE} \`realpath \$OUTPUT_PATH\`/latest_build || exit
 
-if [[ "\${BUILD_GTEST}" == "ON" ]]; then
+if [[ "\${BUILD_TESTS}" == "ON" ]]; then
   ninja -C \${OUTPUT_PATH}/\${BUILD_TYPE} test
 
   COVERAGE_FILE=coverage.info

@@ -5,7 +5,7 @@
 # @file: option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 09:42:57
-# @last_modified_date: 2021-08-11 21:49:06
+# @last_modified_date: 2021-11-09 22:47:51
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -30,19 +30,19 @@ cat << EOF
 #project name
 
 # Option
-  OPTION(ENABLE_ALL_WARNING ON)
-  OPTION(ENABLE_WARNING_AS_ERROR OFF)
-  OPTION(ENABLE_WARNING_EXTRA ON)
-  OPTION(ENABLE_VERBOSE ON)
-  OPTION(ENABLE_PROFILER OFF)
+  option(ENABLE_ALL_WARNING ON)
+  option(ENABLE_WARNING_AS_ERROR OFF)
+  option(ENABLE_WARNING_EXTRA ON)
+  option(ENABLE_VERBOSE ON)
+  option(ENABLE_PROFILER OFF)
 
-  OPTION(BUILD_GTESTS "Build test example cases with google test" OFF)
-  OPTION(WITH_GLOG "Enable google log in this case" OFF)
+  option(BUILD_GTESTS "Build test example cases with google test" OFF)
+  option(WITH_GLOG "Enable google log in this case" OFF)
 
-  OPTION(BUILD_SHARED_LIBS "Build shared libraries" ON)
+  option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 
 # CMake Build System Default Setup
-  SET(CMAKE_BUILD_TYPE "Release" CACHE STRING "Default Build Type" FORCE)
-  SET_PROPERTY(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug RelWithDebInfo MinSizeRel)
+  set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Default Build Type" FORCE)
+  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug RelWithDebInfo MinSizeRel)
 
 EOF
