@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-11-09 23:08:34
+# @last_modified_date: 2021-11-10 21:48:18
 # @description: TODO
 #---***********************************************---
 
@@ -29,32 +29,40 @@ cat << EOF
 
 if(BUILD_TESTS)
   enable_testing()
+  include(GoogleTest)
+  find_package(GTest REQUIRED)
+
   file(GLOB_RECURSE EXAMPLES *.cc)
   foreach(EXAMPLE \${EXAMPLES})
     get_filename_component(MY_TARGET "\${EXAMPLE}" NAME_WE)
     list(APPEND TEST_TARGETS \${MY_TARGET})
     add_executable(\${MY_TARGET} \${EXAMPLE})
-    #add_dependencies(\${MY_TARGET} \${PROJECT_NAME})
+    add_dependencies(\${MY_TARGET} \${PROJECT_NAME}_shared \${PROJECT_NAME}_static)
     target_include_directories(\${MY_TARGET}
+        PUBLIC
+          \${CMAKE_INSTALL_PREFIX}/include
         PRIVATE
+          GTest
           \${PROJECT_SOURCE_DIR}/include
           \${PROJECT_BINARY_DIR}/include
           \${CMAKE_INSTALL_PREFIX}/include
       )
     target_link_libraries(\${MY_TARGET}
-      PRIVATE
-        \${PROJECT_NAME}
-        \${THIRD_PARTY_LIBS}
-        \${TEST_LIBS}
+        PRIVATE
+          \${THIRD_PARTY_LIBS}
+          \${CMAKE_THREAD_LIBS_INIT}
+          GTest::gtest
+          GTest::gtest_main
+          \${PROJECT_NAME}
       )
-
+    gtest_discover_tests(\${MY_TARGET})
   endforeach()
 
-  foreach(test_target IN LISTS TEST_TARGETS)
-    add_test(
-      NAME \${test_target}
-      COMMAND \$<TARGET_FILE:\${test_target}>)
-  endforeach()
+  #foreach(test_target IN LISTS TEST_TARGETS)
+  #  add_test(
+  #    NAME \${test_target}
+  #    COMMAND \$<TARGET_FILE:\${test_target}>)
+  #endforeach()
 
   # if expecting some tests failed.
   # call set_tests_properties(example PROPERTIES WILL_FAIL true)

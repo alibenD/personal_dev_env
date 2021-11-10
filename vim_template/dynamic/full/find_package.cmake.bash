@@ -5,7 +5,7 @@
 # @file: find_package.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:38:22
-# @last_modified_date: 2021-11-09 23:44:12
+# @last_modified_date: 2021-11-10 20:42:17
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -31,14 +31,6 @@ cat << EOF
   list(APPEND CMAKE_MODULE_PATH \${PROJECT_SOURCE_DIR}/cmake_modules)
 # Find *Config.cmake
   # Example: find_package(OpenCV REQUIRED)
-  if(BUILD_TESTS)
-    find_package(GTest REQUIRED)
-    find_package(Threads REQUIRED)
-    include_directories(\${GTEST_INCLUDE_DIRS})
-    set(TEST_LIBS
-    \${GTEST_BOTH_LIBRARIES}
-    \${CMAKE_THREAD_LIBS_INIT})
-  endif()
   if(WITH_GLOG)
     add_definitions(-DENABLE_GLOG)
   endif()
@@ -51,15 +43,6 @@ cat << EOF
   find_program(MEMORYCHECK_COMMAND NAMES valgrind)
   set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")
   include(CTest)
-
-# Set&Add INCLUDE PATH
-  # Example: set ( VPATH_NAME PATH )
-  #          include_directories(\${VPATH_NAME})
-  include_directories(\${PROJECT_SOURCE_DIR}/include)
-  include_directories(\${PROJECT_SOURCE_DIR}/build/include)
-  include_directories(\${CMAKE_INSTALL_PREFIX}/include)
-  include_directories(\${OPENCV_INCLUDE_DIRS})
-  include_directories(\${EIGEN3_INCLUDE_DIRS})
 
 # Set&Add LIB PATH/LINKING_DIRECTORIES
   # Example: link_directories(\${CMAKE_INSTALL_PREFIX}/lib)

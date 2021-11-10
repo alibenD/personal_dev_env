@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-11-09 23:08:57
+# @last_modified_date: 2021-11-10 21:45:10
 # @description: TODO
 #---***********************************************---
 
@@ -43,14 +43,17 @@ string(REPLACE " " ";" _THREAD_SAN_FLAGS \${THREAD_SAN_FLAGS})
 string(REPLACE " " ";" _MEMORY_SAN_FLAGS \${MEMORY_SAN_FLAGS})
 unset(CMAKE_REQUIRED_FLAGS)
 
-file(GLOB_RECURSE EXAMPLES *.cc)
+file(GLOB EXAMPLES *.cc)
 foreach(EXAMPLE \${EXAMPLES})
   get_filename_component(MY_TARGET "\${EXAMPLE}" NAME_WE)
   add_executable(\${MY_TARGET} \${EXAMPLE})
   #add_dependencies(\${MY_TARGET} \${PROJECT_NAME})
   target_include_directories(\${MY_TARGET}
-    PRIVATE
-      \${PROJECT_NAME}_objs
+      PUBLIC
+        \${CMAKE_CURRENT_SOURCE_DIR}/include
+        \${CMAKE_INSTALL_PREFIX}/include
+        \${CMAKE_BINARY_DIR}/include
+        \${PROJECT_SOURCE_DIR}/include
     )
   target_link_libraries(\${MY_TARGET}
     PUBLIC
@@ -62,6 +65,13 @@ foreach(EXAMPLE \${EXAMPLES})
 
   if(address_san_work)
     add_executable(\${MY_TARGET}_san \${EXAMPLE})
+    target_include_directories(\${MY_TARGET}_san
+        PUBLIC
+          \${CMAKE_CURRENT_SOURCE_DIR}/include
+          \${CMAKE_INSTALL_PREFIX}/include
+          \${CMAKE_BINARY_DIR}/include
+          \${PROJECT_SOURCE_DIR}/include
+    )
     target_link_libraries(\${MY_TARGET}_san
       PUBLIC
         Threads::Threads
@@ -84,6 +94,13 @@ foreach(EXAMPLE \${EXAMPLES})
 
   if(thread_san_work)
     add_executable(\${MY_TARGET}_thread \${EXAMPLE})
+    target_include_directories(\${MY_TARGET}_thread
+        PUBLIC
+          \${CMAKE_CURRENT_SOURCE_DIR}/include
+          \${CMAKE_INSTALL_PREFIX}/include
+          \${CMAKE_BINARY_DIR}/include
+          \${PROJECT_SOURCE_DIR}/include
+    )
     target_link_libraries(\${MY_TARGET}_thread
       PUBLIC
         Threads::Threads
@@ -106,6 +123,13 @@ foreach(EXAMPLE \${EXAMPLES})
 
   if(memory_san_work)
     add_executable(\${MY_TARGET}_memory \${EXAMPLE})
+    target_include_directories(\${MY_TARGET}_memory
+        PUBLIC
+          \${CMAKE_CURRENT_SOURCE_DIR}/include
+          \${CMAKE_INSTALL_PREFIX}/include
+          \${CMAKE_BINARY_DIR}/include
+          \${PROJECT_SOURCE_DIR}/include
+    )
     target_link_libraries(\${MY_TARGET}_memory
       PUBLIC
         Threads::Threads
