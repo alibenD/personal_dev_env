@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#---Automatically Generated from template 'bash' wrote by @aliben---
+# @Copyright (C) 2021 All rights reserved.
+# @name: .gitignore
+# @author: aliben.develop@gmail.com
+# @created_date: 2021-11-28 17:33:23
+# @last_modified_date: 2021-11-28 17:33:25
+# @description: TODO
+#---***********************************************---
+
+#IGNORE LIST
+build
+bin
+lib
+doc
+log
+coverage_report
+*.swo
+*.swp
+*.o
+*.a
+*.out
+.idea
+.DS_Store
+.vscode
+
+
+#DON NOT IGNORE LIST
+
+
