@@ -78,8 +78,10 @@
     #export PATH="$HOME/project/stm32/gcc-arm-none-eabi/bin:$PATH"
     #export PATH="$DEV_ENV/gnu-mcu-eclipse/arm-none-eabi-gcc/7.2.1-1.1-20180401-0515/bin:$PATH"
     export PATH="$DEV_ENV/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH"
-    export PATH="$DEV_ENV/android-ndk-r23/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
+    export PATH="$PATH:$DEV_ENV/android-ndk-r23/toolchains/llvm/prebuilt/linux-x86_64/bin"
 
+# Export bochs env
+export BXSHARE=${DEV_ENV}/share/bochs
 
 #export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 
