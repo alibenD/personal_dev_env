@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-11-15 22:18:34
+# @last_modified_date: 2022-02-12 20:46:14
 # @description: TODO
 #---***********************************************---
 
@@ -38,6 +38,10 @@ list(APPEND CMAKE_MODULE_PATH "\${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(GNUInstallDirs)
 include(CMakePrintHelpers)
 include(CMakeDependentOption)
+include(CheckCXXCompilerFlag)
+#check_cxx_compiler_flag(-someflag OUTPUT_VARIABLE)
+include(CheckIPOSupported)
+check_ipo_supported(RESULT result)
 
 include(colors)
 include(option)

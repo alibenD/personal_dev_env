@@ -5,7 +5,7 @@
 # @file: option.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 09:42:57
-# @last_modified_date: 2021-12-01 20:21:27
+# @last_modified_date: 2022-02-12 20:45:26
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -42,7 +42,7 @@ cat << EOF
   option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 
 # CMake Build System Default Setup
-if(CMAKE_BUILD_TYPE)
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 else()
   set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Default Build Type" FORCE)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Release Debug RelWithDebInfo MinSizeRel)

@@ -5,7 +5,7 @@
 # @file: newproject.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-08-31 20:11:33
-# @last_modified_date: 2021-11-09 23:50:23
+# @last_modified_date: 2022-02-12 19:57:01
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -61,7 +61,7 @@ build.bash.bash build.sh > $PROJECT_NAME/build.sh && chmod u+x $PROJECT_NAME/bui
 
 echo "MIT License
 
-Copyright (c) 2018 Aliben(aliben.develop@gmail.com)
+Copyright (c) 2018-$CREATED_YEAR Aliben(aliben.develop@gmail.com)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

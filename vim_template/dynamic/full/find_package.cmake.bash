@@ -5,7 +5,7 @@
 # @file: find_package.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:38:22
-# @last_modified_date: 2021-11-10 20:42:17
+# @last_modified_date: 2022-02-12 20:39:43
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -39,6 +39,15 @@ cat << EOF
   set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
   set(THREADS_PREFER_PTHREAD_FLAG TRUE)
   find_package(Threads REQUIRED)
+
+  find_program(CCACHE_PROGRAM ccache)
+  if(CCACHE_PROGRAM)
+    message("-- ccache: found")
+    set(CMAKE_CXX_COMPILER_LAUNCHER "\${CCACHE_PROGRAM}")
+    set(CMAKE_CUDA_COMPILER_LAUNCHER "\${CCACHE_PROGRAM}")
+  else()
+    message("-- ccache: not found")
+  endif()
 
   find_program(MEMORYCHECK_COMMAND NAMES valgrind)
   set(CTEST_MEMORYCHECK_COMMAND_OPTIONS "--trace-children=yes --leak-check=full")

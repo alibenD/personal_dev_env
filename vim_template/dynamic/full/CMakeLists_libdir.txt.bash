@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-11-10 20:54:54
+# @last_modified_date: 2022-02-12 20:45:47
 # @description: TODO
 #---***********************************************---
 
@@ -83,7 +83,7 @@ target_compile_options(\${PROJECT_NAME}_objs
 
 set_target_properties(\${PROJECT_NAME}_objs
   PROPERTIES
-    POSITION_INDEPENDENT_CODE 1
+    POSITION_INDEPENDENT_CODE ON
     CXX_STANDARD_REQUIRED ON
     CXX_STANDARD 17
     CXX_EXTENSIONS OFF
