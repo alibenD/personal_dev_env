@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2022-02-12 20:46:14
+# @last_modified_date: 2022-05-14 12:02:47
 # @description: TODO
 #---***********************************************---
 
@@ -32,41 +32,25 @@ cmake_minimum_required(VERSION 3.11 FATAL_ERROR)
 
 #project name
 project(${PROJECT_NAME})
+set(PROJECT_VERSION_MAJOR 1)
+set(PROJECT_VERSION_MINOR 2)
+set(PROJECT_VERSION_PATCH 3)
+set(PROJECT_VERSION_TWEAK 4)
+set(PROJECT_VERSION \${PROJECT_VERSION_MAJOR}.\${PROJECT_VERSION_MINOR}.\${PROJECT_VERSION_PATCH}.\${PROJECT_VERSION_TWEAK})
+
 
 list(APPEND CMAKE_MODULE_PATH "\${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-include(GNUInstallDirs)
-include(CMakePrintHelpers)
-include(CMakeDependentOption)
-include(CheckCXXCompilerFlag)
-#check_cxx_compiler_flag(-someflag OUTPUT_VARIABLE)
-include(CheckIPOSupported)
-check_ipo_supported(RESULT result)
-
-include(colors)
-include(option)
-include(compiler_option)
-include(other_options)
-include(find_package)
-include(system_detector)
-define_colors()
+include(project_configuration)
 
 build_warning("Project: \${PROJECT_NAME}")
 build_warning("Build Type: \${CMAKE_BUILD_TYPE}")
 build_warning("Debug Postfix: \${CMAKE_DEBUG_POSTFIX}")
 
 # Set Subdir(src)
-  add_subdirectory(src)
-  add_subdirectory(examples)
-  add_subdirectory(test)
+add_subdirectory(src)
+add_subdirectory(examples)
+add_subdirectory(test)
 
-# EXECUTABLE
-  # Example: ADD_EXECUTABLE( EXEC_NAME SRC_FILE_NAME_LIST )
-
-# TARGET LINK
-  # Example: TARGET_LINK_LIBRARIES( EXEC_NAME LIBPATH ) ...LIB_PATH e.g. \${OPENCV_LIBS}
-  cmake_print_variables(CMAKE_INSTALL_PREFIX)
-  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY \${CMAKE_INSTALL_PREFIX}/\${CMAKE_INSTALL_LIBDIR})
-  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY \${CMAKE_INSTALL_PREFIX}/\${CMAKE_INSTALL_LIBDIR})
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY \${CMAKE_INSTALL_PREFIX}/\${CMAKE_INSTALL_BIN_DIR})
+cmake_print_variables(CMAKE_INSTALL_PREFIX)
 EOF

@@ -5,7 +5,7 @@
 # @file: find_package.cmake.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-21 16:38:22
-# @last_modified_date: 2022-02-12 20:39:43
+# @last_modified_date: 2022-05-14 14:25:39
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -58,11 +58,13 @@ cat << EOF
   link_directories(\${CMAKE_INSTALL_PREFIX}/lib)
   link_directories(\${CMAKE_CURRENT_BINARY_DIR}/lib)
 
-  set(APPLE_LIBS \${COCOA_LIBRARY} \${IOKit_LIBRARY} \${OpenGL_LIBRARY} \${CoreVideo_LIBRARY})
-  set(APPLE_LIBS \${APPLE_LIBS} \${GLFW3_LIBRARY} \${ASSIMP_LIBRARY})
-  set(LIBS \${LIBS} \${APPLE_LIBS})
+  list(APPEND APPLE_LIBS \${COCOA_LIBRARY} \${IOKit_LIBRARY} \${OpenGL_LIBRARY} \${CoreVideo_LIBRARY})
+  list(APPEND APPLE_LIBS \${GLFW3_LIBRARY} \${ASSIMP_LIBRARY})
+  list(APPEND LIBS \${APPLE_LIBS})
 
-  set( THIRD_PARTY_LIBS
-    \${THIRD_PARTY_LIBS}
+  list(APPEND THIRD_PARTY_INCLUDE_DIRS
+  )
+
+  list(APPEND THIRD_PARTY_LIBS
   )
 EOF

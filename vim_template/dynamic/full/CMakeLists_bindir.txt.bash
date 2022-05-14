@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2021-11-10 21:45:10
+# @last_modified_date: 2022-05-14 14:29:59
 # @description: TODO
 #---***********************************************---
 
@@ -50,10 +50,11 @@ foreach(EXAMPLE \${EXAMPLES})
   #add_dependencies(\${MY_TARGET} \${PROJECT_NAME})
   target_include_directories(\${MY_TARGET}
       PUBLIC
-        \${CMAKE_CURRENT_SOURCE_DIR}/include
-        \${CMAKE_INSTALL_PREFIX}/include
-        \${CMAKE_BINARY_DIR}/include
-        \${PROJECT_SOURCE_DIR}/include
+        \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+        \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+        \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+      PRIVATE
+        \${THIRD_PARTY_INCLUDE_DIRS}
     )
   target_link_libraries(\${MY_TARGET}
     PUBLIC
@@ -67,10 +68,11 @@ foreach(EXAMPLE \${EXAMPLES})
     add_executable(\${MY_TARGET}_san \${EXAMPLE})
     target_include_directories(\${MY_TARGET}_san
         PUBLIC
-          \${CMAKE_CURRENT_SOURCE_DIR}/include
-          \${CMAKE_INSTALL_PREFIX}/include
-          \${CMAKE_BINARY_DIR}/include
-          \${PROJECT_SOURCE_DIR}/include
+          \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+          \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+          \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+        PRIVATE
+          \${THIRD_PARTY_INCLUDE_DIRS}
     )
     target_link_libraries(\${MY_TARGET}_san
       PUBLIC
@@ -96,10 +98,11 @@ foreach(EXAMPLE \${EXAMPLES})
     add_executable(\${MY_TARGET}_thread \${EXAMPLE})
     target_include_directories(\${MY_TARGET}_thread
         PUBLIC
-          \${CMAKE_CURRENT_SOURCE_DIR}/include
-          \${CMAKE_INSTALL_PREFIX}/include
-          \${CMAKE_BINARY_DIR}/include
-          \${PROJECT_SOURCE_DIR}/include
+          \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+          \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+          \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+        PRIVATE
+          \${THIRD_PARTY_INCLUDE_DIRS}
     )
     target_link_libraries(\${MY_TARGET}_thread
       PUBLIC
@@ -125,10 +128,11 @@ foreach(EXAMPLE \${EXAMPLES})
     add_executable(\${MY_TARGET}_memory \${EXAMPLE})
     target_include_directories(\${MY_TARGET}_memory
         PUBLIC
-          \${CMAKE_CURRENT_SOURCE_DIR}/include
-          \${CMAKE_INSTALL_PREFIX}/include
-          \${CMAKE_BINARY_DIR}/include
-          \${PROJECT_SOURCE_DIR}/include
+          \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+          \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+          \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+        PRIVATE
+          \${THIRD_PARTY_INCLUDE_DIRS}
     )
     target_link_libraries(\${MY_TARGET}_memory
       PUBLIC
@@ -149,6 +153,10 @@ foreach(EXAMPLE \${EXAMPLES})
       COMMAND \$<TARGET_FILE:\${MY_TARGET}_memory>
       )
   endif()
+  install(
+    TARGETS \${MY_TARGET}
+    RUNTIME DESTINATION \${CMAKE_INSTALL_PREFIX}/bin
+  )
 
 endforeach()
 EOF

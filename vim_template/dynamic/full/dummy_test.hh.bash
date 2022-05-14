@@ -5,7 +5,7 @@
 # @file: Test_Demo.hh.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-16 16:43:25
-# @last_modified_date: 2019-08-16 17:52:18
+# @last_modified_date: 2022-05-14 12:10:46
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -17,6 +17,7 @@ CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
 HEAD_DEF=`echo __${1##*/}__ | tr "a-z.-" "A-Z__"`
+PROJECT_NAME=$2
 
 #---Shell Command
 cat << EOF
@@ -38,7 +39,7 @@ cat << EOF
 #include <iostream>
 
 // Declaration
-namespace Demo
+namespace ${PROJECT_NAME}
 {
   class Obj
   {
@@ -58,6 +59,7 @@ namespace Demo
 
   double func_return10();
   double func_return20();
+  void package_print();
 }
 #endif // $HEAD_DEF
 EOF

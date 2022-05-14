@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2021-11-10 21:02:13
+# @last_modified_date: 2022-05-14 12:53:48
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -34,13 +34,15 @@ CREATED_TIME=\`date '+%Y-%m-%d %H:%M:%S'\`
 CREATED_YEAR=\`date '+%Y'\`
 
 SHORT_ARG="tco:"
-LONG_ARG="output:,toolchain:,build_type:,clean::"
+LONG_ARG="output:,toolchain:,build_type:,install_prefix:,clean::,install::"
 ARGS=\`getopt -o \${SHORT_ARG} -a --long \${LONG_ARG} -- "$@"\`
 
 BUILD_TYPE=RELEASE
 BUILD_TESTS=OFF
 OUTPUT_PATH=build
 CLEAN_FLAG=FALSE
+INSTALL_PREFIX=build
+DO_INSTALL=FALSE
 
 #eval set -- "\${ARGS}"
 
@@ -66,9 +68,20 @@ do
       BUILD_TYPE=\`echo \$2| tr "A-Z" "a-z"\`;
       shift 1
       ;;
+    --install_prefix)
+      echo "install prefix: \$2"
+      if [[ "\$2" != "\${OUTPUT_PATH}" ]]; then
+        INSTALL_PREFIX=\$2
+      fi
+      shift 1
+      ;;
     --toolchain)
       echo "Toolchain: \$2"
       shift 1
+      ;;
+    --install)
+      echo "project will be installed to \${INSTALL_PREFIX}"
+      DO_INSTALL=ON;
       ;;
     --)
       echo "Default: $1"
@@ -86,8 +99,12 @@ fi
 
 mkdir -p \${OUTPUT_PATH}/\$BUILD_TYPE
 set -x
-cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_TESTS=\${BUILD_TESTS}
+cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_TESTS=\${BUILD_TESTS} -DCMAKE_INSTALL_PREFIX=\${INSTALL_PREFIX}
 ninja -C \$OUTPUT_PATH/\$BUILD_TYPE
+if [[ "\${DO_INSTALL}" == "ON" ]]; then
+  ninja -C \${OUTPUT_PATH}/\${BUILD_TYPE} install
+fi
+
 set +x
 if [[ -L \${OUTPUT_PATH}/latest_build ]]; then
   rm \${OUTPUT_PATH}/latest_build

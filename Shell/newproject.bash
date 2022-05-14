@@ -5,7 +5,7 @@
 # @file: newproject.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-08-31 20:11:33
-# @last_modified_date: 2022-02-12 19:57:01
+# @last_modified_date: 2022-05-14 12:28:47
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -28,7 +28,7 @@ mkdir -p $PROJECT_NAME/examples
 #mkdir -p $PROJECT_NAME/build
 #mkdir -p $PROJECT_NAME/bin
 #mkdir -p $PROJECT_NAME/lib
-mkdir -p $PROJECT_NAME/cmake_modules
+#mkdir -p $PROJECT_NAME/cmake_modules
 mkdir -p $PROJECT_NAME/cmake/template
 
 #hello_world.cc.bash $PROJECT_NAME> $PROJECT_NAME/examples/hello_world.cc
@@ -42,10 +42,12 @@ find_package.cmake.bash find_package.cmake > $PROJECT_NAME/cmake/find_package.cm
 config.h.in.bash config.h.in > ${PROJECT_NAME}/cmake/template/config.h.in
 colors.cmake.bash colors.cmake > ${PROJECT_NAME}/cmake/colors.cmake
 system_detector.cmake.bash system_detector.cmake > ${PROJECT_NAME}/cmake/system_detector.cmake
+project_configuration.cmake.bash project_configuration.cmake > ${PROJECT_NAME}/cmake/project_configuration.cmake
+project_config.cmake.in.bash ${PROJECT_NAME}Config.cmake.in > ${PROJECT_NAME}/cmake/${PROJECT_NAME}Config.cmake.in
 
 #print_hello.cc.bash $PROJECT_NAME> $PROJECT_NAME/src/print_hello.cc
 #print_hello.hh.bash $PROJECT_NAME> $PROJECT_NAME/include/$PROJECT_NAME/print_hello.hh
-dummy_test.hh.bash dummy_test.hh > $PROJECT_NAME/include/$PROJECT_NAME/dummy_test.hh
+dummy_test.hh.bash dummy_test.hh $PROJECT_NAME > $PROJECT_NAME/include/$PROJECT_NAME/dummy_test.hh
 dummy_test.cc.bash dummy_test.cc $PROJECT_NAME> $PROJECT_NAME/src/dummy_test.cc
 processor-info.cc.bash processor-info.cc > $PROJECT_NAME/examples/processor-info.cc
 sanitize_example.cc.bash sanitize_example.cc $PROJECT_NAME > $PROJECT_NAME/examples/sanitize_example.cc

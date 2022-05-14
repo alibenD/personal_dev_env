@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2022-02-12 20:45:47
+# @last_modified_date: 2022-05-14 12:25:52
 # @description: TODO
 #---***********************************************---
 
@@ -28,11 +28,13 @@ cat << EOF
 #---****************************************************************---
 
 file(GLOB_RECURSE HEADERS
-  ../include/\$PROJECT_NAME/*/*.h*
-  ../include/\$PROJECT_NAME/*.h*
+  ../include/\${PROJECT_NAME}/*/*.h*
+  ../include/\${PROJECT_NAME}/*.h*
   ../include/*.h*
   )
 file(GLOB_RECURSE SOURCES *.cc *.cpp *.c *.cxx)
+
+set(PROJECT_PUBLIC_HEADER \${HEADERS})
 
 add_library(\${PROJECT_NAME}_objs
   OBJECT
@@ -41,12 +43,14 @@ add_library(\${PROJECT_NAME}_objs
 
 target_include_directories(\${PROJECT_NAME}_objs
   PUBLIC
-    \${CMAKE_CURRENT_SOURCE_DIR}/include
-    \${CMAKE_CURRENT_SOURCE_DIR}/include
-    \${CMAKE_INSTALL_PREFIX}/include
-    \${CMAKE_BINARY_DIR}/include
-    \${CMAKE_CURRENT_BINARY_DIR}
-    \${PROJECT_SOURCE_DIR}/include
+    \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+    \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+    \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+    #\${CMAKE_CURRENT_SOURCE_DIR}/include
+    #\${CMAKE_INSTALL_PREFIX}/include
+    #\${CMAKE_BINARY_DIR}/include
+    #\${CMAKE_CURRENT_BINARY_DIR}
+    #\${PROJECT_SOURCE_DIR}/include
 )
 
 target_sources(\${PROJECT_NAME}_objs
@@ -89,10 +93,12 @@ set_target_properties(\${PROJECT_NAME}_objs
     CXX_EXTENSIONS OFF
 )
 
+# SHARED Library
 add_library(\${PROJECT_NAME}_shared SHARED
     \$<TARGET_OBJECTS:\${PROJECT_NAME}_objs>
 )
 
+# STATIC Library
 add_library(\${PROJECT_NAME}_static STATIC
     \$<TARGET_OBJECTS:\${PROJECT_NAME}_objs>
 )
@@ -101,16 +107,66 @@ set_target_properties(\${PROJECT_NAME}_shared
   PROPERTIES
     OUTPUT_NAME \${PROJECT_NAME}
     IMPORTED_LOCATION "\${LIBRARY_OUTPUT_PATH}/lib\${PROJECT_NAME}.so"
-    INTERFACE_INCLUDE_DIRECTORIES "\${CMAKE_SOURCE_DIR}/include"
+    #INTERFACE_INCLUDE_DIRECTORIES "\${CMAKE_SOURCE_DIR}/include"
+    SOVERSION \${PROJECT_VERSION_MAJOR}
+    PUBLIC_HEADER \${PROJECT_PUBLIC_HEADER}
+    MACOSX_PATH ON
 )
 
 set_target_properties(\${PROJECT_NAME}_static
   PROPERTIES
     OUTPUT_NAME \${PROJECT_NAME}
     IMPORTED_LOCATION "\${LIBRARY_OUTPUT_PATH}/lib\${PROJECT_NAME}.so"
-    INTERFACE_INCLUDE_DIRECTORIES "\${CMAKE_SOURCE_DIR}/include"
+    #INTERFACE_INCLUDE_DIRECTORIES "\${CMAKE_SOURCE_DIR}/include"
 )
 
 target_link_libraries(\${PROJECT_NAME}_static \${THIRD_PARTY_LIBS})
 target_link_libraries(\${PROJECT_NAME}_shared \${THIRD_PARTY_LIBS})
+
+set(HEADER_INSTALL_DIRECTORY \${CMAKE_INSTALL_PREFIX}/include)
+
+install(
+  TARGETS \${PROJECT_NAME}_shared \${PROJECT_NAME}_static
+  EXPORT \${PROJECT_NAME}Targets
+  RUNTIME DESTINATION \${CMAKE_INSTALL_PREFIX}/bin
+  LIBRARY DESTINATION \${CMAKE_INSTALL_PREFIX}/lib
+  ARCHIVE DESTINATION \${CMAKE_INSTALL_PREFIX}/lib
+  PUBLIC_HEADER
+  DESTINATION \${HEADER_INSTALL_DIRECTORY}/\${PROJECT_NAME}
+    COMPONENT dev
+)
+
+install(
+  EXPORT
+    \${PROJECT_NAME}Targets
+  NAMESPACE
+    "\${PROJECT_NAME}::"
+  DESTINATION
+    \${PROJECT_INSTALL_CMAKEDIR}
+  COMPONENT
+    dev
+)
+
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+  \${CMAKE_CURRENT_BINARY_DIR}/\${PROJECT_NAME}ConfigVersion.cmake
+  VERSION \${PROJECT_VERSION}
+  COMPATIBILITY SameMajorVersion
+)
+
+configure_package_config_file(
+  \${PROJECT_SOURCE_DIR}/cmake/\${PROJECT_NAME}Config.cmake.in
+  \${CMAKE_CURRENT_BINARY_DIR}/\${PROJECT_NAME}Config.cmake
+  INSTALL_DESTINATION \${PROJECT_INSTALL_CMAKEDIR}
+)
+
+install(
+  FILES
+    \${CMAKE_CURRENT_BINARY_DIR}/\${PROJECT_NAME}Config.cmake
+    \${CMAKE_CURRENT_BINARY_DIR}/\${PROJECT_NAME}ConfigVersion.cmake
+  DESTINATION
+    \${PROJECT_INSTALL_CMAKEDIR}
+)
+
 EOF

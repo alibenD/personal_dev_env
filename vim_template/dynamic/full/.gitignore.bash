@@ -5,7 +5,7 @@
 # @name: gitignore.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-11-01 18:18:27
-# @last_modified_date: 2019-08-20 09:51:41
+# @last_modified_date: 2022-05-14 13:01:43
 # @description: TODO
 #---***********************************************---
 
@@ -29,6 +29,8 @@ cat << EOF
 
 #IGNORE LIST
 build
+install
+build_*
 bin
 lib
 doc

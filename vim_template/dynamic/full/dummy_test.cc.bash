@@ -5,7 +5,7 @@
 # @file: Test_Demo.cc.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-16 17:40:19
-# @last_modified_date: 2021-11-09 23:35:51
+# @last_modified_date: 2022-05-14 12:11:56
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -28,11 +28,11 @@ cat << EOF
   *-----------------------------------------------*/
 
 //INCLUDE
-#include <$PROJECT_NAME/dummy_test.hh>
+#include <${PROJECT_NAME}/dummy_test.hh>
 #include <iostream>
 
 //CODE
-namespace Demo
+namespace ${PROJECT_NAME}
 {
   int Obj::func_return1(){ return 1; }
   int Obj::func_return2(){ return 2; }
@@ -41,5 +41,10 @@ namespace Demo
 
   double func_return10() { return 10.0; }
   double func_return20() { return 20.0; }
+
+  void package_print()
+  {
+    std::cout << "Hello ${PROJECT_NAME}" << std::endl;
+  }
 }
 EOF
