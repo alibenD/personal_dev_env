@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2021-07-15 22:16:44
+# @last_modified_date: 2022-05-14 22:15:33
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -60,6 +60,8 @@ if [[ `echo $SHELL` != "/bin/zsh" ]]; then
   echo "Changing Login Shell from $SHELL to /bin/zsh"
   chsh -s /bin/zsh
 fi
+
+/bin/bash init_git.bash
 
 
 set +x
