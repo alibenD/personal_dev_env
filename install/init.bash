@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2022-05-14 22:15:33
+# @last_modified_date: 2022-09-16 19:17:32
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -61,6 +61,7 @@ if [[ `echo $SHELL` != "/bin/zsh" ]]; then
   chsh -s /bin/zsh
 fi
 
+cd ../install
 /bin/bash init_git.bash
 
 
