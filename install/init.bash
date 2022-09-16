@@ -5,7 +5,7 @@
 # @file: init.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:01:19
-# @last_modified_date: 2022-09-16 19:17:32
+# @last_modified_date: 2022-09-16 19:49:09
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -43,6 +43,7 @@ else
   fi
 fi
 
+mkdir -p ~/.local/share/fonts
 cp ../nerd_font/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf ~/.local/share/fonts
 fc-cache -vf ~/.local/share/fonts
 
