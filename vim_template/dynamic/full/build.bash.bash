@@ -4,7 +4,7 @@
 # @name: bashnew.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2017-10-21 17:42:35
-# @last_modified_date: 2022-05-14 12:53:48
+# @last_modified_date: 2022-05-20 22:59:35
 # @brief: Generate a template for new bash file
 #---***********************************************---
 
@@ -99,7 +99,7 @@ fi
 
 mkdir -p \${OUTPUT_PATH}/\$BUILD_TYPE
 set -x
-cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_TESTS=\${BUILD_TESTS} -DCMAKE_INSTALL_PREFIX=\${INSTALL_PREFIX}
+cmake -B \$OUTPUT_PATH/\$BUILD_TYPE -GNinja -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=\${BUILD_TYPE} -DBUILD_TESTS=\${BUILD_TESTS} -DCMAKE_INSTALL_PREFIX=\${INSTALL_PREFIX} -DBUILD_EXAMPLES=ON
 ninja -C \$OUTPUT_PATH/\$BUILD_TYPE
 if [[ "\${DO_INSTALL}" == "ON" ]]; then
   ninja -C \${OUTPUT_PATH}/\${BUILD_TYPE} install

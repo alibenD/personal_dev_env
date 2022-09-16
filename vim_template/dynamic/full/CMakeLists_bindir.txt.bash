@@ -5,7 +5,7 @@
 # @name: cmakelists.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2018-01-31 13:47:34
-# @last_modified_date: 2022-05-14 14:29:59
+# @last_modified_date: 2022-05-20 22:55:37
 # @description: TODO
 #---***********************************************---
 
@@ -26,6 +26,8 @@ cat << EOF
 # @last_modified_date: NO_LAST_MODIFIED_DATE
 # @description: TODO
 #---****************************************************************---
+
+if(BUILD_EXAMPLES)
 
 list(APPEND CXX_BASIC_FLAGS "-g3" "-O1")
 include(CheckCXXCompilerFlag)
@@ -64,94 +66,97 @@ foreach(EXAMPLE \${EXAMPLES})
       \${PROJECT_NAME}
       \${THIRD_PARTY_LIBS})
 
-  if(address_san_work)
-    add_executable(\${MY_TARGET}_san \${EXAMPLE})
-    target_include_directories(\${MY_TARGET}_san
-        PUBLIC
-          \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
-          \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
-          \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
-        PRIVATE
-          \${THIRD_PARTY_INCLUDE_DIRS}
-    )
-    target_link_libraries(\${MY_TARGET}_san
-      PUBLIC
-        Threads::Threads
-      PRIVATE
-        \${_ADDRESS_SAN_FLAGS}
-      INTERFACE
-        \${PROJECT_NAME}
-        \${THIRD_PARTY_LIBS})
-    target_compile_options(\${MY_TARGET}_san
-      PUBLIC
-        \${CXX_BASIC_FLAGS}
-        \${_ADDRESS_SAN_FLAGS}
-    )
-
-    add_test(
-      NAME \${MY_TARGET}_san
-      COMMAND \$<TARGET_FILE:\${MY_TARGET}_san>
+  if(BUILD_EXAMPLES_WITH_SAN)
+    if(address_san_work)
+      add_executable(\${MY_TARGET}_san \${EXAMPLE})
+      target_include_directories(\${MY_TARGET}_san
+          PUBLIC
+            \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+            \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+            \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+          PRIVATE
+            \${THIRD_PARTY_INCLUDE_DIRS}
       )
-  endif()
-
-  if(thread_san_work)
-    add_executable(\${MY_TARGET}_thread \${EXAMPLE})
-    target_include_directories(\${MY_TARGET}_thread
+      target_link_libraries(\${MY_TARGET}_san
         PUBLIC
-          \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
-          \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
-          \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+          Threads::Threads
         PRIVATE
-          \${THIRD_PARTY_INCLUDE_DIRS}
-    )
-    target_link_libraries(\${MY_TARGET}_thread
-      PUBLIC
-        Threads::Threads
-        \${_THREAD_SAN_FLAGS}
-      INTERFACE
-        \${PROJECT_NAME}
-        \${THIRD_PARTY_LIBS})
-
-    target_compile_options(\${MY_TARGET}_thread
-      PUBLIC
-        \${CXX_BASIC_FLAGS}
-        \${_THREAD_SAN_FLAGS}
-    )
-
-    add_test(
-      NAME \${MY_TARGET}_thread
-      COMMAND \$<TARGET_FILE:\${MY_TARGET}_thread>
-      )
-  endif()
-
-  if(memory_san_work)
-    add_executable(\${MY_TARGET}_memory \${EXAMPLE})
-    target_include_directories(\${MY_TARGET}_memory
+          \${_ADDRESS_SAN_FLAGS}
+        INTERFACE
+          \${PROJECT_NAME}
+          \${THIRD_PARTY_LIBS})
+      target_compile_options(\${MY_TARGET}_san
         PUBLIC
-          \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
-          \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
-          \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
-        PRIVATE
-          \${THIRD_PARTY_INCLUDE_DIRS}
-    )
-    target_link_libraries(\${MY_TARGET}_memory
-      PUBLIC
-        Threads::Threads
-        \${_MEMORY_SAN_FLAGS}
-      INTERFACE
-        \${PROJECT_NAME}
-        \${THIRD_PARTY_LIBS})
-    target_compile_options(\${MY_TARGET}_memory
-      PUBLIC
-        \${CXX_BASIC_FLAGS}
-        \${_MEMORY_SAN_FLAGS}
-        -fPIC
-    )
-
-    add_test(
-      NAME \${MY_TARGET}_memory
-      COMMAND \$<TARGET_FILE:\${MY_TARGET}_memory>
+          \${CXX_BASIC_FLAGS}
+          \${_ADDRESS_SAN_FLAGS}
       )
+
+      add_test(
+        NAME \${MY_TARGET}_san
+        COMMAND \$<TARGET_FILE:\${MY_TARGET}_san>
+        )
+    endif()
+
+    if(thread_san_work)
+      add_executable(\${MY_TARGET}_thread \${EXAMPLE})
+      target_include_directories(\${MY_TARGET}_thread
+          PUBLIC
+            \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+            \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+            \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+          PRIVATE
+            \${THIRD_PARTY_INCLUDE_DIRS}
+      )
+      target_link_libraries(\${MY_TARGET}_thread
+        PUBLIC
+          Threads::Threads
+          \${_THREAD_SAN_FLAGS}
+        INTERFACE
+          \${PROJECT_NAME}
+          \${THIRD_PARTY_LIBS})
+
+      target_compile_options(\${MY_TARGET}_thread
+        PUBLIC
+          \${CXX_BASIC_FLAGS}
+          \${_THREAD_SAN_FLAGS}
+      )
+
+      add_test(
+        NAME \${MY_TARGET}_thread
+        COMMAND \$<TARGET_FILE:\${MY_TARGET}_thread>
+        )
+    endif()
+
+    if(memory_san_work)
+      add_executable(\${MY_TARGET}_memory \${EXAMPLE})
+      target_include_directories(\${MY_TARGET}_memory
+          PUBLIC
+            \$<BUILD_INTERFACE:\${CMAKE_BINARY_DIR}/\${PROJECT_INSTALL_INCDIR}>
+            \$<BUILD_INTERFACE:\${PROJECT_SOURCE_DIR}/include>
+            \$<INSTALL_INTERFACE:\${PROJECT_INSTALL_INCDIR}>
+          PRIVATE
+            \${THIRD_PARTY_INCLUDE_DIRS}
+      )
+      target_link_libraries(\${MY_TARGET}_memory
+        PUBLIC
+          Threads::Threads
+          \${_MEMORY_SAN_FLAGS}
+        INTERFACE
+          \${PROJECT_NAME}
+          \${THIRD_PARTY_LIBS})
+      target_compile_options(\${MY_TARGET}_memory
+        PUBLIC
+          \${CXX_BASIC_FLAGS}
+          \${_MEMORY_SAN_FLAGS}
+          -fPIC
+      )
+
+      add_test(
+        NAME \${MY_TARGET}_memory
+        COMMAND \$<TARGET_FILE:\${MY_TARGET}_memory>
+        )
+    endif()
+
   endif()
   install(
     TARGETS \${MY_TARGET}
@@ -159,4 +164,5 @@ foreach(EXAMPLE \${EXAMPLES})
   )
 
 endforeach()
+endif()
 EOF
