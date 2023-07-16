@@ -4,7 +4,7 @@
 # @file: install_linux_dependency.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:40:05
-# @last_modified_date: 2021-12-11 16:46:25
+# @last_modified_date: 2023-07-15 16:11:27
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -16,6 +16,7 @@ CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
 set -x
+sudo apt update
 sudo apt install -y cmake \
   python2.7 \
   python2.7-dev \
@@ -46,12 +47,14 @@ sudo apt install -y cmake \
   doxygen-gui \
   lcov \
   net-tools \
-  cmake-gui \
+  cmake-qt-gui \
   valgrind  \
   libx11-dev \
   dbus-x11  \
   libxtst-dev \
   ccache \
-  wireshark
+  libssl-dev \
+  wireshark \
+  libfuse2
 
 set +x

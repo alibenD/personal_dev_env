@@ -26,7 +26,7 @@ fi
 
 cd $VIM_DOWNLOAD_PATH
 unzip vim-master.zip
-cd vim-master
+cd vim-master/src
 ./configure --with-features=huge        \
             --enable-multibyte          \
             --enable-rubyinterp=yes     \

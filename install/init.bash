@@ -15,15 +15,6 @@
 CREATED_TIME=`date '+%Y-%m-%d %H:%M:%S'`
 CREATED_YEAR=`date '+%Y'`
 set -x
-git submodule init
-git submodule update
-git submodule foreach --recursive git submodule init
-git submodule foreach --recursive git submodule update
-#---Shell Command
-if [[ $ALIBEN_DEV_ENV ]]; then
-  echo "Already installed personal_dev_env"
-  exit 0;
-fi
 
 if [[ "$(uname)" = "Linux" ]]; then
   echo "Linux system, default using apt to manage package"
@@ -41,6 +32,15 @@ else
     sudo chown -R `echo $USER` $HOME/dev
     /bin/bash brew_package_install.sh
   fi
+fi
+git submodule init
+git submodule update
+git submodule foreach --recursive git submodule init
+git submodule foreach --recursive git submodule update
+#---Shell Command
+if [[ $ALIBEN_DEV_ENV ]]; then
+  echo "Already installed personal_dev_env"
+  exit 0;
 fi
 
 mkdir -p ~/.local/share/fonts
