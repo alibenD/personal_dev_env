@@ -148,3 +148,6 @@ fi
 setopt nonomatch
 
 #source /opt/ros/noetic/setup.zsh
+export TURTLEBOT3_MODEL=waffle
+export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:$HOME/.gazebo/models:/opt/ros/galactic/share/turtlebot3_gazebo/models
+ulimit -c unlimited

@@ -4,7 +4,7 @@
 # @file: install_linux_dependency.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:40:05
-# @last_modified_date: 2023-07-15 16:11:27
+# @last_modified_date: 2023-07-16 20:22:40
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -55,6 +55,14 @@ sudo apt install -y cmake \
   ccache \
   libssl-dev \
   wireshark \
-  libfuse2
+  libfuse2 \
+  virt-manager \
+  qemu-kvm \
+  libguestfs-tools \
+  libvirt-clients \
+  libvirt-daemon-system \
+  bridge-utils \
+  ovmf \
+  swtpm
 
 set +x
