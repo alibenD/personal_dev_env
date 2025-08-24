@@ -4,7 +4,7 @@
 # @file: install_linux_dependency.sh
 # @author: aliben.develop@gmail.com
 # @created_date: 2020-04-04 14:40:05
-# @last_modified_date: 2023-07-16 20:22:40
+# @last_modified_date: 2025-08-22 15:22:59
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -18,12 +18,9 @@ CREATED_YEAR=`date '+%Y'`
 set -x
 sudo apt update
 sudo apt install -y cmake \
-  python2.7 \
-  python2.7-dev \
   python3 \
   python3-dev \
   libncurses5-dev \
-  libpython2.7-dev \
   libpython3-dev \
   git \
   bash-completion \
@@ -63,6 +60,9 @@ sudo apt install -y cmake \
   libvirt-daemon-system \
   bridge-utils \
   ovmf \
-  swtpm
+  swtpm \
+  fuse2fs \
+  ssh \
+  htop
 
 set +x

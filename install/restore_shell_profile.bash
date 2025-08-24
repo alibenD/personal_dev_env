@@ -5,7 +5,7 @@
 # @file: restore_shell_profile.bash
 # @author: aliben.develop@gmail.com
 # @created_date: 2019-08-15 14:04:44
-# @last_modified_date: 2020-04-04 22:03:04
+# @last_modified_date: 2025-08-22 17:29:44
 # @brief: TODO
 # @details: TODO
 #---***********************************************---
@@ -17,7 +17,7 @@ CREATED_YEAR=`date '+%Y'`
 
 #---Shell Command
 CURRENT_PATH=`pwd`
-SETTING_PATH=${CURRENT_PATH%/*}
+export SETTING_PATH=${CURRENT_PATH%/*}
 set -x
 if [[ -f "$HOME/.bash_profile" ]] || [[ -L "$HOME/.bash_profile" ]]; then
   mv $HOME/.bash_profile $HOME/.bash_profile_old

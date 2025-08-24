@@ -37,6 +37,6 @@ cd vim-master/src
             --enable-cscope             \
             --with-x                    \
             --prefix=$HOME/.local
-
-make install -j7
+make -j8
+make install -j8
 set +x
